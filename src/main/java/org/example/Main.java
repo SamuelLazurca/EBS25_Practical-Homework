@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.generators.ParallelPublicationsGenerator;
+import org.example.generators.ParallelSubscriptionsGenerator;
+import org.example.generators.PublicationsGenerator;
 import org.example.generators.SubscriptionsGenerator;
 import org.example.schema.Schema;
 import org.example.schema.SchemaField;
@@ -23,25 +26,40 @@ public class Main {
                 )
         );
 
-        int numberOfSubscriptions = 100000;
+        /*int numberOfPublications = 10000;
 
         long start = System.nanoTime();
-        List<Subscription> subscriptions = getSubscriptions(schema, numberOfSubscriptions);
+        PublicationsGenerator generator = new PublicationsGenerator(schema, numberOfPublications);
+        generator.generatePublications();
         long end = System.nanoTime();
         System.out.println("Durata generării sincrone: " + (end - start) / 1_000_000 + " ms");
 
         start = System.nanoTime();
-        List<Subscription> subscriptionsParallel = getSubscribersGeneratedInParallel(schema, numberOfSubscriptions);
+        ParallelPublicationsGenerator.generatePublicationsMultithreaded(schema, 4, numberOfPublications);
+        end = System.nanoTime();
+        System.out.println("Durata generării paralele: " + (end - start) / 1_000_000 + " ms");*/
+
+        int numberOfSubscriptions = 100000;
+
+        long start = System.nanoTime();
+        getSubscriptions(schema, numberOfSubscriptions);
+        long end = System.nanoTime();
+        System.out.println("Durata generării sincrone: " + (end - start) / 1_000_000 + " ms");
+
+        start = System.nanoTime();
+        getSubscriptionsGeneratedInParallel(schema, numberOfSubscriptions);
         end = System.nanoTime();
         System.out.println("Durata generării paralele: " + (end - start) / 1_000_000 + " ms");
     }
 
-    private static List<Subscription> getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
+    private static void getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 51.0);
+            fieldsFrequencyPercentage.put(field, 0.0);
         }
-        fieldsFrequencyPercentage.put(SchemaFields.CITY, 90.0);
+
+        fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
+        fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
 
         Map<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
         for (SchemaField field : schema.fields) {
@@ -50,19 +68,22 @@ public class Main {
 
         SubscriptionsGenerator generator = new SubscriptionsGenerator(
                 schema,
-                numberOfSubscriptions,
                 fieldsFrequencyPercentage,
-                equalOperatorFrequency
+                equalOperatorFrequency,
+                numberOfSubscriptions
         );
-        return generator.generateSubscriptions(numberOfSubscriptions);
+
+        generator.generateSubscriptions();
     }
 
-    private static List<Subscription> getSubscribersGeneratedInParallel(Schema schema, int numberOfSubscriptions) throws Exception {
+    private static void getSubscriptionsGeneratedInParallel(Schema schema, int numberOfSubscriptions) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 51.0);
+            fieldsFrequencyPercentage.put(field, 0.0);
         }
-        fieldsFrequencyPercentage.put(SchemaFields.CITY, 90.0);
+
+        fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
+        fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
 
         Map<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
         for (SchemaField field : schema.fields) {
@@ -71,7 +92,7 @@ public class Main {
 
         int threads = 4;
 
-        return SubscriptionsGenerator.generateSubscriptionsMultiThreaded(
+        ParallelSubscriptionsGenerator.generateSubscriptionsMultiThreaded(
                 schema,
                 numberOfSubscriptions,
                 threads,
