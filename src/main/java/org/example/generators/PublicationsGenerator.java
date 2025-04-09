@@ -1,7 +1,8 @@
 package org.example.generators;
 
 import org.example.Publication;
-import org.example.schema.*;
+import org.example.schema.Schema;
+import org.example.schema.SchemaField;
 
 public class PublicationsGenerator {
     private final Schema schema;

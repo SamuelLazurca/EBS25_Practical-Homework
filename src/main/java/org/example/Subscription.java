@@ -17,7 +17,7 @@ public class Subscription {
         StringBuilder sb = new StringBuilder();
         sb.append("{\n");
         for (SchemaField field : fields.keySet()) {
-            sb.append(" (").append(field.field().toString().toLowerCase()).append(",").append(fields.get(field).getOperator()).append(",").append(fields.get(field).getValue()).append("),\n");
+            sb.append(" (").append(field.field().toString().toLowerCase()).append(",").append(fields.get(field).operator()).append(",").append(fields.get(field).value()).append("),\n");
         }
         sb.append("}\n");
         return sb.toString();

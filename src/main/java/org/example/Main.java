@@ -43,16 +43,16 @@ public class Main {
         }
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 90.0);
 
-        Map<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
+        Map<SchemaField, Double> equalFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
-            equalOperatorFrequency.put(field, 20);
+            equalFrequencyPercentage.put(field, 20.0);
         }
 
         SubscriptionsGenerator generator = new SubscriptionsGenerator(
                 schema,
                 numberOfSubscriptions,
                 fieldsFrequencyPercentage,
-                equalOperatorFrequency
+                equalFrequencyPercentage
         );
         return generator.generateSubscriptions(numberOfSubscriptions);
     }
@@ -64,9 +64,9 @@ public class Main {
         }
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 90.0);
 
-        Map<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
+        Map<SchemaField, Integer> equalFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
-            equalOperatorFrequency.put(field, 20);
+            equalFrequencyPercentage.put(field, 20);
         }
 
         int threads = 4;
@@ -76,7 +76,7 @@ public class Main {
                 numberOfSubscriptions,
                 threads,
                 fieldsFrequencyPercentage,
-                equalOperatorFrequency
+                equalFrequencyPercentage
         );
     }
 }
