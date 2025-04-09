@@ -7,6 +7,7 @@ import org.example.schema.SchemaFields;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -22,44 +23,60 @@ public class Main {
                 )
         );
 
-        /*
-        int numberOfPublications = 100;
+        int numberOfSubscriptions = 100000;
 
-        PublicationsGenerator generator = new PublicationsGenerator(schema);
+        long start = System.nanoTime();
+        List<Subscription> subscriptions = getSubscriptions(schema, numberOfSubscriptions);
+        long end = System.nanoTime();
+        System.out.println("Durata generării sincrone: " + (end - start) / 1_000_000 + " ms");
 
-        for (int i = 0; i < numberOfPublications; i++)
-        {
-            Publication publication = generator.generatePublication();
-            System.out.println(publication);
-        }*/
+        start = System.nanoTime();
+        List<Subscription> subscriptionsParallel = getSubscribersGeneratedInParallel(schema, numberOfSubscriptions);
+        end = System.nanoTime();
+        System.out.println("Durata generării paralele: " + (end - start) / 1_000_000 + " ms");
+    }
 
-        int numberOfSubscriptions = 1000;
-
-        HashMap<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
+    private static List<Subscription> getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
+        Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
             fieldsFrequencyPercentage.put(field, 51.0);
         }
-
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 90.0);
 
-        HashMap<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
+        Map<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
         for (SchemaField field : schema.fields) {
             equalOperatorFrequency.put(field, 20);
         }
 
-        SubscriptionsGenerator subscriptionsGenerator = new SubscriptionsGenerator(
+        SubscriptionsGenerator generator = new SubscriptionsGenerator(
                 schema,
                 numberOfSubscriptions,
                 fieldsFrequencyPercentage,
                 equalOperatorFrequency
         );
+        return generator.generateSubscriptions(numberOfSubscriptions);
+    }
 
-        for (int i = 0; i < numberOfSubscriptions; i++)
-        {
-            Subscription subscription = subscriptionsGenerator.generateSubscription();
-            System.out.println(subscription);
+    private static List<Subscription> getSubscribersGeneratedInParallel(Schema schema, int numberOfSubscriptions) throws Exception {
+        Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
+        for (SchemaField field : schema.fields) {
+            fieldsFrequencyPercentage.put(field, 51.0);
+        }
+        fieldsFrequencyPercentage.put(SchemaFields.CITY, 90.0);
+
+        Map<SchemaField, Integer> equalOperatorFrequency = new HashMap<>();
+        for (SchemaField field : schema.fields) {
+            equalOperatorFrequency.put(field, 20);
         }
 
-        System.out.println(subscriptionsGenerator.getFieldsCurrentFrequency());
+        int threads = 4;
+
+        return SubscriptionsGenerator.generateSubscriptionsMultiThreaded(
+                schema,
+                numberOfSubscriptions,
+                threads,
+                fieldsFrequencyPercentage,
+                equalOperatorFrequency
+        );
     }
 }
