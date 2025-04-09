@@ -16,5 +16,5 @@ public class GeneratorsParams {
     public final static IntegerFieldLimit windLimit= new IntegerFieldLimit(0, 100);
     public final static IntegerFieldLimit stationLimit = new IntegerFieldLimit(1, 100);
     public final static DoubleFieldLimit rainLimit = new DoubleFieldLimit(0.0, 100.0);
-    public final static DateFieldLimit dateLimit = new DateFieldLimit(new Date(2025-1900, 1, 1), new Date(2025-1900, 12, 31));
+    public final static DateFieldLimit dateLimit = new DateFieldLimit(new Date(2025-1900, 1, 1), new Date(2025-1900, 9, 1));
 }
