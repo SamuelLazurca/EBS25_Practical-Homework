@@ -6,20 +6,26 @@ import org.example.schema.SchemaField;
 
 public class PublicationsGenerator {
     private final Schema schema;
+    private final int numberOfPublications;
 
-    public PublicationsGenerator(Schema schema) {
+    public PublicationsGenerator(Schema schema, int numberOfPublications) {
         this.schema = schema;
+        this.numberOfPublications = numberOfPublications;
     }
 
-    public Publication generatePublication() {
+    private void generatePublication() {
         Publication publication = new Publication();
 
         for (SchemaField field : schema.fields) {
             String value = generateValue(field);
             publication.addField(field, value);
         }
+    }
 
-        return publication;
+    public void generatePublications() {
+        for (int i = 0; i < this.numberOfPublications; i++) {
+            generatePublication();
+        }
     }
 
     private String generateValue(SchemaField field) {
