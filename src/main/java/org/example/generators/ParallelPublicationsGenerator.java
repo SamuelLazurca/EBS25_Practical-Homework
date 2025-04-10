@@ -16,8 +16,11 @@ public class ParallelPublicationsGenerator {
     ) {
         ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
 
+        int chunkSize = numberOfPublications / numberOfThreads;
+        int reminder = numberOfPublications % numberOfThreads;
+
         for (int i = 0; i < numberOfThreads; i++) {
-            PublicationsGenerator localGen = new PublicationsGenerator(schema, numberOfPublications / (numberOfThreads - i));
+            PublicationsGenerator localGen = new PublicationsGenerator(schema, chunkSize + (i < reminder ? 1 : 0));
             localGen.setPublicationSaver(publicationSaver);
             executor.execute(localGen::generatePublications);
         }

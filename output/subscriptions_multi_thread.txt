@@ -1,60 +1,500 @@
 {
+ (temp,LT,-6),
+ (rain,LTE,54.09),
+ (city,GTE,Bucharest),
+ (wind,GT,4),
+}
+
+{
+ (rain,GT,99.79),
+ (direction,LTE,NW),
+}
+
+{
+ (temp,GT,32),
+ (rain,GTE,17.35),
+ (wind,GT,77),
+ (direction,LTE,S),
+}
+
+{
+ (temp,EQ,4),
+ (station,GTE,38),
+ (rain,LT,69.08),
+ (city,EQ,Cluj),
+ (direction,LTE,W),
+ (date,EQ,20.07.2025),
+}
+
+{
+ (temp,GTE,-19),
+ (station,GTE,56),
+ (rain,GT,49.04),
+}
+
+{
+ (station,LT,78),
+ (direction,LT,S),
+ (date,NEQ,15.04.2025),
+}
+
+{
+ (city,NEQ,Cluj),
+}
+
+{
+ (wind,LTE,6),
+ (date,GTE,25.07.2025),
+}
+
+{
+ (station,LTE,30),
+ (city,GT,Bucharest),
+}
+
+{
+ (temp,LT,-9),
+ (station,EQ,29),
+ (rain,EQ,84.06),
+}
+
+{
+ (temp,EQ,12),
+ (rain,GTE,91.83),
+ (wind,LT,100),
+}
+
+{
  (city,EQ,Bucharest),
- (wind,EQ,31),
+ (date,NEQ,09.02.2025),
 }
 
 {
- (rain,GT,85.44),
- (date,LTE,04.06.2025),
+ (temp,NEQ,20),
+ (station,LTE,68),
+ (city,LTE,Timisoara),
+ (wind,LT,17),
 }
 
 {
- (rain,LTE,1.6),
- (date,LT,07.06.2025),
- (station,GTE,61),
+ (temp,EQ,49),
+ (wind,LT,100),
 }
 
 {
- (wind,EQ,28),
- (rain,LTE,41.9),
- (date,GT,03.06.2025),
- (station,LTE,52),
+ (rain,LT,14.85),
+ (direction,LT,NE),
 }
 
 {
- (wind,NEQ,35),
- (rain,GT,35.03),
- (station,NEQ,79),
+ (temp,LT,12),
+ (station,GTE,27),
+ (rain,GT,53.27),
+ (city,GT,Constanta),
+ (wind,LT,93),
+ (date,GT,27.04.2025),
 }
 
 {
- (temp,GTE,-18),
- (wind,LT,57),
- (rain,GT,83.98),
+ (rain,EQ,32.26),
+ (wind,GT,46),
 }
 
 {
- (city,EQ,Constanta),
- (wind,EQ,11),
- (date,EQ,25.05.2025),
+ (temp,GTE,29),
+ (station,NEQ,41),
+ (city,GT,Bucharest),
+ (direction,GTE,W),
+ (date,NEQ,27.06.2025),
+}
+
+{
+ (city,EQ,Bucharest),
+ (wind,NEQ,27),
+ (direction,NEQ,S),
+ (date,LTE,27.06.2025),
+}
+
+{
+ (station,LT,72),
+ (rain,EQ,51.26),
+ (date,EQ,20.10.2025),
+}
+
+{
+ (station,LTE,2),
+ (rain,EQ,0.71),
+ (date,LT,18.08.2025),
+}
+
+{
+ (city,LT,Bucharest),
+ (wind,EQ,16),
+ (date,LT,18.08.2025),
+}
+
+{
+ (temp,EQ,25),
+ (station,EQ,67),
+}
+
+{
+ (rain,EQ,90.25),
+ (city,EQ,Cluj),
+ (wind,GT,17),
+ (direction,EQ,E),
+}
+
+{
+ (station,NEQ,94),
+ (wind,EQ,14),
 }
 
 {
  (wind,EQ,69),
- (date,LT,12.05.2025),
+ (direction,LT,SE),
+ (date,EQ,17.05.2025),
 }
 
 {
- (direction,GT,S),
- (city,GTE,Constanta),
- (temp,GT,-28),
- (wind,GTE,79),
- (rain,EQ,2.99),
+ (temp,EQ,39),
+ (city,LTE,Iasi),
+ (wind,LT,80),
+}
+
+{
+ (temp,EQ,-27),
+ (station,EQ,59),
+ (wind,EQ,26),
+}
+
+{
+ (wind,LTE,38),
+}
+
+{
+ (temp,EQ,27),
+ (station,EQ,48),
+ (city,GTE,Bucharest),
+ (wind,EQ,44),
+}
+
+{
+ (wind,GT,55),
+}
+
+{
+ (temp,EQ,0),
+ (station,EQ,82),
+ (rain,EQ,36.08),
+ (city,EQ,Constanta),
 }
 
 {
  (direction,EQ,E),
- (rain,GTE,14.6),
- (station,NEQ,71),
+}
+
+{
+ (wind,EQ,47),
+ (date,EQ,07.05.2025),
+}
+
+{
+ (rain,GTE,58.76),
+ (wind,GTE,66),
+}
+
+{
+ (rain,EQ,94.15),
+ (city,LTE,Constanta),
+ (wind,LT,67),
+}
+
+{
+ (temp,NEQ,34),
+ (station,EQ,41),
+ (city,GT,Iasi),
+ (wind,NEQ,17),
+ (date,EQ,28.06.2025),
+}
+
+{
+ (station,EQ,38),
+ (city,EQ,Bucharest),
+ (direction,EQ,E),
+}
+
+{
+ (date,NEQ,18.08.2025),
+}
+
+{
+ (wind,LT,18),
+ (direction,EQ,S),
+}
+
+{
+ (city,NEQ,Iasi),
+ (wind,GT,47),
+}
+
+{
+ (temp,EQ,-8),
+ (station,EQ,23),
+ (city,GT,Cluj),
+ (wind,NEQ,49),
+ (direction,EQ,N),
+ (date,EQ,07.08.2025),
+}
+
+{
+ (temp,LTE,-7),
+ (city,GT,Timisoara),
+ (wind,EQ,97),
+}
+
+{
+ (rain,EQ,89.29),
+}
+
+{
+ (rain,EQ,22.88),
+ (wind,LT,17),
+ (direction,EQ,NE),
+}
+
+{
+ (city,EQ,Constanta),
+ (wind,GT,12),
+}
+
+{
+ (city,EQ,Bucharest),
+}
+
+{
+ (wind,LT,70),
+}
+
+{
+ (wind,LT,39),
+}
+
+{
+ (city,EQ,Iasi),
+}
+
+{
+ (city,GTE,Cluj),
+}
+
+{
+ (wind,GT,49),
+}
+
+{
+ (wind,GTE,17),
+ (date,NEQ,15.05.2025),
+}
+
+{
+ (wind,GT,51),
+}
+
+{
+ (station,EQ,10),
+ (rain,EQ,65.17),
+ (city,EQ,Iasi),
+ (date,EQ,15.05.2025),
+}
+
+{
+ (city,EQ,Timisoara),
+}
+
+{
+ (city,EQ,Iasi),
+ (wind,GTE,96),
+}
+
+{
+ (temp,EQ,45),
+ (station,EQ,63),
+ (wind,NEQ,57),
+}
+
+{
+ (wind,GT,10),
+}
+
+{
+ (direction,EQ,E),
+ (date,EQ,20.09.2025),
+}
+
+{
+ (direction,EQ,NW),
+}
+
+{
+ (wind,EQ,41),
+}
+
+{
+ (wind,GTE,21),
+}
+
+{
+ (wind,EQ,21),
+}
+
+{
+ (wind,NEQ,5),
+}
+
+{
+ (direction,GTE,N),
+}
+
+{
+ (rain,EQ,12.72),
+ (wind,NEQ,76),
+ (direction,EQ,SE),
+}
+
+{
+ (wind,EQ,72),
+}
+
+{
+ (wind,LT,8),
+}
+
+{
+ (city,EQ,Iasi),
+ (wind,EQ,37),
+}
+
+{
+ (wind,EQ,85),
+}
+
+{
+ (temp,EQ,-22),
+ (wind,NEQ,37),
+}
+
+{
+ (direction,NEQ,N),
+}
+
+{
+ (wind,EQ,89),
+}
+
+{
+ (direction,EQ,W),
+}
+
+{
+ (city,EQ,Cluj),
+}
+
+{
+ (wind,EQ,75),
+}
+
+{
+ (wind,EQ,1),
+}
+
+{
+ (wind,EQ,12),
+}
+
+{
+ (wind,EQ,48),
+}
+
+{
+ (wind,GT,36),
+}
+
+{
+ (city,EQ,Timisoara),
+ (wind,EQ,69),
+}
+
+{
+ (wind,EQ,27),
+}
+
+{
+ (wind,EQ,54),
+}
+
+{
+ (wind,EQ,99),
+}
+
+{
+ (wind,EQ,66),
+}
+
+{
+ (wind,EQ,27),
+}
+
+{
+ (wind,EQ,4),
+}
+
+{
+ (wind,EQ,79),
+}
+
+{
+ (wind,EQ,10),
+}
+
+{
+ (wind,EQ,90),
+}
+
+{
+ (date,EQ,06.04.2025),
+}
+
+{
+ (wind,EQ,40),
+ (date,EQ,29.11.2025),
+}
+
+{
+ (wind,EQ,56),
+}
+
+{
+ (wind,EQ,4),
+}
+
+{
+ (wind,EQ,40),
+}
+
+{
+ (wind,EQ,27),
+}
+
+{
+ (wind,EQ,22),
+}
+
+{
+ (wind,EQ,99),
+}
+
+{
+ (wind,EQ,84),
 }
 
