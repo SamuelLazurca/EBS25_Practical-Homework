@@ -1,0 +1,76 @@
+[
+{
+  "subscription": [
+    {"field": "wind", "operator": "EQ", "value": "13"},
+    {"field": "station", "operator": "EQ", "value": "19"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "GTE", "value": "S"},
+    {"field": "temp", "operator": "LTE", "value": "42"},
+    {"field": "date", "operator": "GTE", "value": "04.05.2025"},
+    {"field": "station", "operator": "LTE", "value": "52"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "LT", "value": "SW"},
+    {"field": "city", "operator": "EQ", "value": "Constanta"},
+    {"field": "station", "operator": "LT", "value": "17"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "EQ", "value": "NW"},
+    {"field": "wind", "operator": "EQ", "value": "87"},
+    {"field": "station", "operator": "EQ", "value": "82"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "EQ", "value": "S"},
+    {"field": "city", "operator": "LTE", "value": "Bucharest"},
+    {"field": "temp", "operator": "EQ", "value": "-15"},
+    {"field": "wind", "operator": "LTE", "value": "65"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "GTE", "value": "NW"},
+    {"field": "wind", "operator": "EQ", "value": "12"},
+    {"field": "rain", "operator": "GT", "value": "96.96"},
+    {"field": "station", "operator": "LT", "value": "50"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "GT", "value": "E"},
+    {"field": "temp", "operator": "GT", "value": "44"},
+    {"field": "wind", "operator": "GT", "value": "67"},
+    {"field": "station", "operator": "LTE", "value": "57"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "temp", "operator": "LTE", "value": "14"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "EQ", "value": "E"},
+    {"field": "city", "operator": "EQ", "value": "Constanta"},
+    {"field": "temp", "operator": "EQ", "value": "33"},
+    {"field": "wind", "operator": "EQ", "value": "25"},
+    {"field": "rain", "operator": "GTE", "value": "56.07"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "wind", "operator": "LTE", "value": "42"},
+    {"field": "rain", "operator": "GTE", "value": "89.37"},
+    {"field": "date", "operator": "LTE", "value": "04.01.2025"},
+    {"field": "station", "operator": "EQ", "value": "27"}
+  ]
+}
+]

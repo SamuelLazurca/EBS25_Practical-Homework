@@ -1,0 +1,83 @@
+[
+{
+  "subscription": [
+    {"field": "city", "operator": "LTE", "value": "Bucharest"},
+    {"field": "rain", "operator": "GT", "value": "25.69"},
+    {"field": "date", "operator": "GT", "value": "03.09.2025"},
+    {"field": "station", "operator": "LTE", "value": "50"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "LT", "value": "SW"},
+    {"field": "city", "operator": "GTE", "value": "Timisoara"},
+    {"field": "temp", "operator": "NEQ", "value": "22"},
+    {"field": "wind", "operator": "LTE", "value": "69"},
+    {"field": "rain", "operator": "EQ", "value": "45.68"},
+    {"field": "date", "operator": "EQ", "value": "21.05.2025"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "city", "operator": "GTE", "value": "Iasi"},
+    {"field": "rain", "operator": "LTE", "value": "6.9"},
+    {"field": "date", "operator": "LTE", "value": "08.04.2025"},
+    {"field": "station", "operator": "EQ", "value": "30"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "city", "operator": "LTE", "value": "Iasi"},
+    {"field": "temp", "operator": "EQ", "value": "47"},
+    {"field": "wind", "operator": "NEQ", "value": "38"},
+    {"field": "rain", "operator": "EQ", "value": "95.42"},
+    {"field": "date", "operator": "EQ", "value": "18.11.2025"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "city", "operator": "EQ", "value": "Cluj"},
+    {"field": "temp", "operator": "LT", "value": "-12"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "temp", "operator": "EQ", "value": "-13"},
+    {"field": "rain", "operator": "GTE", "value": "23.29"},
+    {"field": "date", "operator": "GTE", "value": "02.01.2025"},
+    {"field": "station", "operator": "GTE", "value": "7"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "city", "operator": "EQ", "value": "Cluj"},
+    {"field": "temp", "operator": "GTE", "value": "23"},
+    {"field": "wind", "operator": "EQ", "value": "58"},
+    {"field": "date", "operator": "EQ", "value": "11.02.2025"},
+    {"field": "station", "operator": "EQ", "value": "60"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "EQ", "value": "NW"},
+    {"field": "city", "operator": "EQ", "value": "Iasi"},
+    {"field": "rain", "operator": "EQ", "value": "50.07"},
+    {"field": "station", "operator": "GTE", "value": "2"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "LT", "value": "NE"},
+    {"field": "date", "operator": "NEQ", "value": "12.08.2025"}
+  ]
+},
+{
+  "subscription": [
+    {"field": "direction", "operator": "EQ", "value": "W"},
+    {"field": "temp", "operator": "EQ", "value": "-15"},
+    {"field": "rain", "operator": "EQ", "value": "11.28"},
+    {"field": "date", "operator": "EQ", "value": "10.05.2025"},
+    {"field": "station", "operator": "EQ", "value": "90"}
+  ]
+}
+]

@@ -31,8 +31,8 @@ public class Main {
                 )
         );
 
-        int numberOfSubscriptions = 1000000;
-        int numberOfPublications = 50000;
+        int numberOfSubscriptions = 10;
+        int numberOfPublications = 50;
 
         // SINGLE-THREADED SUBSCRIPTIONS
         long start = System.nanoTime();
@@ -61,9 +61,9 @@ public class Main {
 
     private static void getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
-        for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 50.0);
-        }
+//        for (SchemaField field : schema.fields) {
+//            fieldsFrequencyPercentage.put(field, 50.0);
+//        }
 
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
         fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
@@ -73,7 +73,7 @@ public class Main {
             equalOperatorFrequency.put(field, 50.0);
         }
 
-        SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_single_thread.txt");
+        SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_single_thread.json");
 
         SubscriptionsGenerator generator = new SubscriptionsGenerator(
                 schema,
@@ -94,9 +94,9 @@ public class Main {
 
     private static void getSubscriptionsGeneratedInParallel(Schema schema, int numberOfSubscriptions) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
-        for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 20.0);
-        }
+//        for (SchemaField field : schema.fields) {
+//            fieldsFrequencyPercentage.put(field, 20.0);
+//        }
 
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 30.0);
         fieldsFrequencyPercentage.put(SchemaFields.WIND, 70.0);
@@ -108,7 +108,7 @@ public class Main {
 
         int threads = 4;
 
-        SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_multi_thread.txt");
+        SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_multi_thread.json");
 
         ParallelSubscriptionsGenerator.generateSubscriptionsMultiThreaded(
                 schema,
@@ -127,7 +127,7 @@ public class Main {
     }
 
     private static void getPublications(Schema schema, int numberOfPublications) throws IOException {
-        PublicationSaver saver = new TextFilePublicationSaver("output/publications_single_thread.txt");
+        PublicationSaver saver = new TextFilePublicationSaver("output/publications_single_thread.json");
         PublicationsGenerator generator = new PublicationsGenerator(schema, numberOfPublications);
         generator.setPublicationSaver(saver);
         generator.generatePublications();
@@ -141,7 +141,7 @@ public class Main {
 
     private static void getPublicationsGeneratedInParallel(Schema schema, int numberOfPublications) throws Exception {
         int threads = 4;
-        PublicationSaver saver = new TextFilePublicationSaver("output/publications_multi_thread.txt");
+        PublicationSaver saver = new TextFilePublicationSaver("output/publications_multi_thread.json");
         ParallelPublicationsGenerator.generatePublicationsMultithreaded(
                 schema,
                 threads,

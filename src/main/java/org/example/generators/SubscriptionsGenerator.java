@@ -196,8 +196,6 @@ public class SubscriptionsGenerator {
                 // return the EQ operator
                 int eqReqFreq = (int) (equalRequiredPercentages.get(field) * (fieldsCurrentFrequencies.get(field) + 1) / 100.0);
 
-                System.out.println(field.toString() + " - eqReqFreq " + eqReqFreq + "\t" + equalCurrentFrequencies.get(field));
-
                 if (equalCurrentFrequencies.get(field) < eqReqFreq) {
                     return Operator.EQ;
                 }
