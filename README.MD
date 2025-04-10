@@ -2,6 +2,22 @@
 
 ---
 
+## Authors
+
+- Lazurcă Samuel-Ionuț (MISS1)
+- Nastasiu Ștefan (MISS1)
+- Anfimov Vladimir (MIAO1)
+
+## Specificatii procesor
+
+````
+=== System & CPU Stats ===
+OS Name:         Windows 11
+OS Version:      10.0
+Architecture:    amd64
+Available Cores: 16
+````
+
 ## Explicatie algoritmi
 
 ---
