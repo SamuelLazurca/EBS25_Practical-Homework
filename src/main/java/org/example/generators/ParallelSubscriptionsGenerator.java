@@ -2,9 +2,16 @@ package org.example.generators;
 
 import org.example.schema.Schema;
 import org.example.schema.SchemaField;
+import org.example.storage.SubscriptionSaver;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 public class ParallelSubscriptionsGenerator {
     public static void generateSubscriptionsMultiThreaded (
@@ -12,7 +19,8 @@ public class ParallelSubscriptionsGenerator {
             int totalSubscriptions,
             int numberOfThreads,
             Map<SchemaField, Double> fieldsFrequencyPercentage,
-            Map<SchemaField, Integer> equalOperatorsRequiredFrequency
+            Map<SchemaField, Double> equalOperatorsFrequencyPercentage,
+            SubscriptionSaver subscriptionSaver
     ) throws Exception {
 
         long startTime = System.nanoTime();
@@ -22,12 +30,20 @@ public class ParallelSubscriptionsGenerator {
         int totalFieldsCount = 0;
 
         Map<SchemaField, Integer> globalTargetFieldFrequencies = new ConcurrentHashMap<>();
+        Map<SchemaField, Integer> globalEqualOperatorsFrequencies = new ConcurrentHashMap<>();
+
         for (SchemaField field : schema.fields) {
             Double pct = fieldsFrequencyPercentage.get(field);
             if (pct != null) {
                 int freq = (int) Math.round(pct * totalSubscriptions / 100.0);
                 globalTargetFieldFrequencies.put(field, freq);
                 totalFieldsCount += freq;
+
+                Double operatorPct = equalOperatorsFrequencyPercentage.get(field);
+                if (operatorPct != null) {
+                    int operatorFreq = (int) Math.round(operatorPct * freq / 100.0);
+                    globalEqualOperatorsFrequencies.put(field, operatorFreq);
+                }
             }
         }
 
@@ -122,6 +138,33 @@ public class ParallelSubscriptionsGenerator {
             }
         }
 
+        List<Map<SchemaField, Integer>> threadEqualOperatorsFrequencies = new ArrayList<>();
+        for (int i = 0; i < numberOfThreads; i++) {
+            threadEqualOperatorsFrequencies.add(new ConcurrentHashMap<>());
+        }
+
+        for (Map.Entry<SchemaField, Integer> entry : globalEqualOperatorsFrequencies.entrySet()) {
+            SchemaField field = entry.getKey();
+            int operatorCount = entry.getValue();
+
+            int operatorMediumChunkSize = operatorCount / numberOfThreads + 1;
+
+            while (operatorCount > 0) {
+                for (int i = 0; i < numberOfThreads; i++) {
+                    int threadFieldCount = threadTargetFieldsFrequencies.get(i).getOrDefault(field, 0);
+                    int threadFieldOperatorCount = threadEqualOperatorsFrequencies.get(i).getOrDefault(field, 0);
+
+                    if (threadFieldCount - threadFieldOperatorCount > 0) {
+                        int chunkReserved = Math.min(operatorMediumChunkSize, threadFieldCount - threadFieldOperatorCount);
+                        chunkReserved = Math.min(chunkReserved, operatorCount);
+
+                        threadEqualOperatorsFrequencies.get(i).put(field, chunkReserved);
+                        operatorCount -= chunkReserved;
+                    }
+                }
+            }
+        }
+
         int endTime = (int) ((System.nanoTime() - startTime) / 1_000_000);
 
         System.out.println("Durata pre-procesarii " + endTime + " ms");
@@ -135,15 +178,26 @@ public class ParallelSubscriptionsGenerator {
                     schema,
                     numberOfSubsToGenerate,
                     threadTargetFieldsFrequencies.get(i),
-                    equalOperatorsRequiredFrequency,
+                    threadEqualOperatorsFrequencies.get(i),
+                    equalOperatorsFrequencyPercentage,
                     allFieldsHaveFrequencyRestrictions,
                     countOfFieldsPerThread[i]
             );
+            // inject the saver instance
+            localGen.setSubscriptionSaver(subscriptionSaver);
 
             executor.execute(localGen::generateSubscriptions);
         }
 
         executor.shutdown();
-        executor.awaitTermination(1, TimeUnit.HOURS);
+        try {
+            if (!executor.awaitTermination(1, TimeUnit.HOURS)) {
+                executor.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            executor.shutdownNow();
+            Thread.currentThread().interrupt();
+            throw new RuntimeException("Thread interrupted", e);
+        }
     }
 }

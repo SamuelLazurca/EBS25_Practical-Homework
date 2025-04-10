@@ -1,53 +1,73 @@
 package org.example.generators;
 
 import org.example.Subscription;
-import org.example.schema.*;
+import org.example.schema.Operator;
+import org.example.schema.Schema;
+import org.example.schema.SchemaField;
+import org.example.schema.SubscriptionValue;
+import org.example.storage.SubscriptionSaver;
 
-import java.util.*;
-import java.util.concurrent.*;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 public class SubscriptionsGenerator {
     private final Schema schema;
     private final int numberOfSubscriptions;
     private final Map<SchemaField, Integer> fieldsRequiredFrequencies;
     private final Map<SchemaField, Integer> fieldsCurrentFrequencies;
-    private final Map<SchemaField, Integer> equalOperatorsRequiredFrequencies;
+    private final Map<SchemaField, Integer> equalRequiredFrequencies;
+    private final Map<SchemaField, Integer> equalCurrentFrequencies;
+    private final Map<SchemaField, Double> equalRequiredPercentages;
     private final int fieldsTotalMaxCount;
     private int fieldsCurrentCount = 0;
     private final boolean allFieldsHaveFrequencyRestrictions;
     private int generatedSubscriptionsCount;
+    private SubscriptionSaver subscriptionSaver;
 
     public SubscriptionsGenerator(
             Schema schema,
-            Map<SchemaField, Double> fieldsFrequencyPercentage,
-            Map<SchemaField, Integer> equalOperatorsRequiredFrequencies,
+            Map<SchemaField, Double> fieldsFrequencyPercentages,
+            Map<SchemaField, Double> equalFrequencyPercentages,
             int numberOfSubscriptions
     ) throws Exception {
         this.schema = schema;
         this.numberOfSubscriptions = numberOfSubscriptions;
-        this.equalOperatorsRequiredFrequencies = equalOperatorsRequiredFrequencies;
-        this.fieldsCurrentFrequencies = new HashMap<>();
+        this.equalRequiredFrequencies = new HashMap<>();
+        this.equalCurrentFrequencies = new HashMap<>();
+
+        // field -> double. Used for computing the minimum equal
+        // operator frequency for unrestricted fields
+        this.equalRequiredPercentages = equalFrequencyPercentages;
         this.fieldsRequiredFrequencies = new HashMap<>();
+        this.fieldsCurrentFrequencies = new HashMap<>();
 
         int fieldsCount = 0;
         boolean restricted = true;
 
         for (SchemaField field : schema.fields) {
             fieldsCurrentFrequencies.put(field, 0);
-            Double pct = fieldsFrequencyPercentage.get(field);
-            if (pct != null) {
-                int freq = (int) (pct * numberOfSubscriptions / 100.0);
-                fieldsRequiredFrequencies.put(field, freq);
-                fieldsCount += freq;
+            equalCurrentFrequencies.put(field, 0);
+
+            Double fieldPercentage = fieldsFrequencyPercentages.get(field);
+            if (fieldPercentage != null) {
+                int fieldFreq = (int) (fieldPercentage * numberOfSubscriptions / 100.0);
+                fieldsRequiredFrequencies.put(field, fieldFreq);
+                fieldsCount += fieldFreq;
+
+                Double eqPercentage = equalFrequencyPercentages.get(field);
+                if (eqPercentage != null) {
+                    int eqFreq = (int) (eqPercentage * fieldFreq / 100.0);
+                    equalRequiredFrequencies.put(field, eqFreq);
+                }
             } else {
                 restricted = false;
             }
         }
-
         if (restricted && fieldsCount < numberOfSubscriptions) {
             throw new Exception("Total frequency < 100% for single-thread usage");
         }
-
         this.fieldsTotalMaxCount = fieldsCount;
         this.allFieldsHaveFrequencyRestrictions = restricted;
     }
@@ -56,27 +76,33 @@ public class SubscriptionsGenerator {
             Schema schema,
             int numberOfSubscriptions,
             Map<SchemaField, Integer> fieldsRequiredFrequencies,
-            Map<SchemaField, Integer> equalOperatorsRequiredFrequencies,
+            Map<SchemaField, Integer> equalRequiredFrequencies,
+            Map<SchemaField, Double> equalFrequencyPercentages,
             boolean allFieldsHaveFrequencyRestrictions,
             int fieldsTotalMaxCount
     ) throws Exception {
-
         this.schema = schema;
         this.numberOfSubscriptions = numberOfSubscriptions;
         this.fieldsRequiredFrequencies = fieldsRequiredFrequencies;
-        this.equalOperatorsRequiredFrequencies = equalOperatorsRequiredFrequencies;
+        this.equalRequiredFrequencies = equalRequiredFrequencies;
         this.fieldsCurrentFrequencies = new ConcurrentHashMap<>();
+        this.equalCurrentFrequencies = new ConcurrentHashMap<>();
+        this.fieldsTotalMaxCount = fieldsTotalMaxCount;
+        this.allFieldsHaveFrequencyRestrictions = allFieldsHaveFrequencyRestrictions;
+        this.equalRequiredPercentages = equalFrequencyPercentages;
 
         for (SchemaField f : schema.fields) {
             this.fieldsCurrentFrequencies.put(f, 0);
+            this.equalCurrentFrequencies.put(f, 0);
         }
-
-        this.fieldsTotalMaxCount = fieldsTotalMaxCount;
-        this.allFieldsHaveFrequencyRestrictions = allFieldsHaveFrequencyRestrictions;
 
         if (this.allFieldsHaveFrequencyRestrictions && this.fieldsTotalMaxCount < numberOfSubscriptions) {
             throw new Exception("Total frequency < 100% in partition");
         }
+    }
+
+    public void setSubscriptionSaver(SubscriptionSaver saver) {
+        this.subscriptionSaver = saver;
     }
 
     public void generateSubscriptions() {
@@ -126,10 +152,17 @@ public class SubscriptionsGenerator {
                 }
             }
         }
-
         generatedSubscriptionsCount++;
 
-        // System.out.println(subscription);
+        if (subscriptionSaver != null) {
+            try {
+                subscriptionSaver.save(subscription);
+            } catch (IOException e) {
+                System.err.println("Error saving subscription: " + e.getMessage());
+            }
+        } else {
+            System.out.println(subscription);
+        }
     }
 
     private void updateSubscription(Subscription subscription, SchemaField field) {
@@ -142,12 +175,49 @@ public class SubscriptionsGenerator {
             case Direction -> GeneratorsParams.directions.get((int) (Math.random() * GeneratorsParams.directions.size()));
             case Date -> GeneratorsParams.dateFormat.format(GeneratorsParams.dateLimit.getRandomValue());
         };
-
-        Operator operator = Operator.values()[(int) (Math.random() * Operator.values().length)];
-
+        Operator operator = generateOperator(field);
         subscription.addField(field, new SubscriptionValue(operator, value));
 
         fieldsCurrentFrequencies.put(field, fieldsCurrentFrequencies.get(field) + 1);
         fieldsCurrentCount++;
+
+        if (operator == Operator.EQ) {
+            equalCurrentFrequencies.put(field, equalCurrentFrequencies.get(field) + 1);
+        }
+    }
+
+    private Operator generateOperator(SchemaField field) {
+        if (equalRequiredPercentages.get(field) != null) {
+            if (fieldsRequiredFrequencies.get(field) == null) {
+                // if the field has no required frequency (random number),
+                // we have to compute the minimum eq req frequency every time
+                // we generate a subscription for this field.
+                // Then, if the minimum eq req frequency is not reached, we
+                // return the EQ operator
+                int eqReqFreq = (int) (equalRequiredPercentages.get(field) * (fieldsCurrentFrequencies.get(field) + 1) / 100.0);
+
+                System.out.println(field.toString() + " - eqReqFreq " + eqReqFreq + "\t" + equalCurrentFrequencies.get(field));
+
+                if (equalCurrentFrequencies.get(field) < eqReqFreq) {
+                    return Operator.EQ;
+                }
+                return Operator.values()[(int) (Math.random() * Operator.values().length)];
+            }
+
+            // get the remaining number of subscriptions for this field
+            int fieldReqFreq = fieldsRequiredFrequencies.get(field) == null ? numberOfSubscriptions : fieldsRequiredFrequencies.get(field);
+            int remainingFieldFreq = fieldReqFreq - fieldsCurrentFrequencies.get(field);
+
+            int remainingEqualFreq = equalRequiredFrequencies.get(field) - equalCurrentFrequencies.get(field);
+            if (remainingEqualFreq > 0) {
+                if (remainingFieldFreq == remainingEqualFreq) {
+                    return Operator.EQ;
+                }
+            }
+        }
+        // 1. There was no equal operator frequency
+        // 2. The minimum equal operator frequency is already reached
+        // 3. There are more remaining subscriptions than equal operator frequency
+        return Operator.values()[(int) (Math.random() * Operator.values().length)];
     }
 }
