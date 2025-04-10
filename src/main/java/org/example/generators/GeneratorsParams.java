@@ -31,4 +31,13 @@ public class GeneratorsParams {
 
         dateLimit = new DateFieldLimit(startDate, endDate);
     }
+
+    public final static List<String> MapOperatorToString = List.of(
+            ">",
+            ">=",
+            "<",
+            "<=",
+            "==",
+            "!="
+    );
 }

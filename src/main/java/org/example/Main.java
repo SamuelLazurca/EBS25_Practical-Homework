@@ -1,5 +1,6 @@
 package org.example;
 
+import com.sun.management.OperatingSystemMXBean;
 import org.example.generators.ParallelPublicationsGenerator;
 import org.example.generators.ParallelSubscriptionsGenerator;
 import org.example.generators.PublicationsGenerator;
@@ -13,6 +14,7 @@ import org.example.storage.TextFilePublicationSaver;
 import org.example.storage.TextFileSubscriptionSaver;
 
 import java.io.IOException;
+import java.lang.management.ManagementFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,38 +34,67 @@ public class Main {
         );
 
         int numberOfSubscriptions = 10;
-        int numberOfPublications = 50;
+        int numberOfPublications = 10;
+        int numberOfThreads = 4;
+
+        OperatingSystemMXBean osBean =
+                (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
+
+        int availableProcessors = osBean.getAvailableProcessors();
+
+        System.out.println("\n=== System & CPU Stats ===");
+        System.out.println("OS Name:         " + System.getProperty("os.name"));
+        System.out.println("OS Version:      " + System.getProperty("os.version"));
+        System.out.println("Architecture:    " + System.getProperty("os.arch"));
+        System.out.println("Available Cores: " + availableProcessors);
 
         // SINGLE-THREADED SUBSCRIPTIONS
         long start = System.nanoTime();
         getSubscriptions(schema, numberOfSubscriptions);
         long end = System.nanoTime();
-        System.out.println("Durata generării sincrone (subscriptii): " + (end - start) / 1_000_000 + " ms");
+
+        System.out.println("\n\nSUBSCRIPTIONS GENERATION");
+        System.out.println("==========================");
+        System.out.println("\nSingle-threaded execution\n");
+        System.out.println("** Duration: " + (end - start) / 1_000_000 + " ms\n");
 
         // PARALLEL SUBSCRIPTIONS
+        System.out.println("\nMulti-threaded execution");
+
         start = System.nanoTime();
-        getSubscriptionsGeneratedInParallel(schema, numberOfSubscriptions);
+        getSubscriptionsGeneratedInParallel(schema, numberOfSubscriptions, numberOfThreads);
         end = System.nanoTime();
-        System.out.println("Durata generării paralele (subscriptii): " + (end - start) / 1_000_000 + " ms");
+
+        System.out.println("\n** Number of threads: " + numberOfThreads);
+        System.out.println("** Duration " + (end - start) / 1_000_000 + " ms\n");
 
         // SINGLE-THREADED PUBLICATIONS
+        System.out.println("\nPUBLICATIONS GENERATION");
+        System.out.println("==========================");
+
         start = System.nanoTime();
         getPublications(schema, numberOfPublications);
         end = System.nanoTime();
-        System.out.println("Durata generării sincrone (publicatii): " + (end - start) / 1_000_000 + " ms");
+
+        System.out.println("\nSingle-threaded execution\n");
+        System.out.println("** Duration: " + (end - start) / 1_000_000 + " ms");
 
         // PARALLEL PUBLICATIONS
+        System.out.println("\nMulti-threaded execution");
+
         start = System.nanoTime();
-        getPublicationsGeneratedInParallel(schema, numberOfSubscriptions);
+        getPublicationsGeneratedInParallel(schema, numberOfPublications, numberOfThreads);
         end = System.nanoTime();
-        System.out.println("Durata generării paralele (publicatii): " + (end - start) / 1_000_000 + " ms");
+
+        System.out.println("\n** Number of threads: " + numberOfThreads);
+        System.out.println("** Duration " + (end - start) / 1_000_000 + " ms\n");
     }
 
     private static void getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
-//        for (SchemaField field : schema.fields) {
-//            fieldsFrequencyPercentage.put(field, 50.0);
-//        }
+        for (SchemaField field : schema.fields) {
+            fieldsFrequencyPercentage.put(field, 50.0);
+        }
 
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
         fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
@@ -81,7 +112,7 @@ public class Main {
                 equalOperatorFrequency,
                 numberOfSubscriptions
         );
-        // inject the saver
+
         generator.setSubscriptionSaver(saver);
         generator.generateSubscriptions();
 
@@ -92,21 +123,19 @@ public class Main {
         }
     }
 
-    private static void getSubscriptionsGeneratedInParallel(Schema schema, int numberOfSubscriptions) throws Exception {
+    private static void getSubscriptionsGeneratedInParallel(Schema schema, int numberOfSubscriptions, int threads) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
-//        for (SchemaField field : schema.fields) {
-//            fieldsFrequencyPercentage.put(field, 20.0);
-//        }
+        for (SchemaField field : schema.fields) {
+            fieldsFrequencyPercentage.put(field, 50.0);
+        }
 
-        fieldsFrequencyPercentage.put(SchemaFields.CITY, 30.0);
-        fieldsFrequencyPercentage.put(SchemaFields.WIND, 70.0);
+        fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
+        fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
 
         Map<SchemaField, Double> equalOperatorFrequency = new HashMap<>();
         for (SchemaField field : schema.fields) {
             equalOperatorFrequency.put(field, 50.0);
         }
-
-        int threads = 4;
 
         SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_multi_thread.json");
 
@@ -139,8 +168,7 @@ public class Main {
         }
     }
 
-    private static void getPublicationsGeneratedInParallel(Schema schema, int numberOfPublications) throws Exception {
-        int threads = 4;
+    private static void getPublicationsGeneratedInParallel(Schema schema, int numberOfPublications, int threads) throws Exception {
         PublicationSaver saver = new TextFilePublicationSaver("output/publications_multi_thread.json");
         ParallelPublicationsGenerator.generatePublicationsMultithreaded(
                 schema,

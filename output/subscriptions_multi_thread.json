@@ -1,76 +1,77 @@
 [
 {
   "subscription": [
-    {"field": "wind", "operator": "EQ", "value": "13"},
-    {"field": "station", "operator": "EQ", "value": "19"}
+    {"field": "rain", "operator": "<=", "value": "52.68"},
+    {"field": "city", "operator": "==", "value": "Bucharest"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "GTE", "value": "S"},
-    {"field": "temp", "operator": "LTE", "value": "42"},
-    {"field": "date", "operator": "GTE", "value": "04.05.2025"},
-    {"field": "station", "operator": "LTE", "value": "52"}
+    {"field": "date", "operator": "==", "value": "14.07.2025"},
+    {"field": "temp", "operator": "==", "value": "-17"},
+    {"field": "station", "operator": "==", "value": "80"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "LT", "value": "SW"},
-    {"field": "city", "operator": "EQ", "value": "Constanta"},
-    {"field": "station", "operator": "LT", "value": "17"}
+    {"field": "direction", "operator": "==", "value": "S"},
+    {"field": "wind", "operator": ">", "value": "22"},
+    {"field": "rain", "operator": "==", "value": "73.85"},
+    {"field": "station", "operator": "==", "value": "98"},
+    {"field": "city", "operator": ">=", "value": "Timisoara"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "EQ", "value": "NW"},
-    {"field": "wind", "operator": "EQ", "value": "87"},
-    {"field": "station", "operator": "EQ", "value": "82"}
+    {"field": "date", "operator": "<=", "value": "13.06.2025"},
+    {"field": "temp", "operator": "==", "value": "19"},
+    {"field": "direction", "operator": "!=", "value": "W"},
+    {"field": "wind", "operator": "==", "value": "63"},
+    {"field": "rain", "operator": "==", "value": "78.99"},
+    {"field": "station", "operator": ">=", "value": "9"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "EQ", "value": "S"},
-    {"field": "city", "operator": "LTE", "value": "Bucharest"},
-    {"field": "temp", "operator": "EQ", "value": "-15"},
-    {"field": "wind", "operator": "LTE", "value": "65"}
+    {"field": "date", "operator": "==", "value": "13.06.2025"},
+    {"field": "temp", "operator": "<", "value": "-19"},
+    {"field": "direction", "operator": ">", "value": "NW"},
+    {"field": "station", "operator": ">=", "value": "88"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "GTE", "value": "NW"},
-    {"field": "wind", "operator": "EQ", "value": "12"},
-    {"field": "rain", "operator": "GT", "value": "96.96"},
-    {"field": "station", "operator": "LT", "value": "50"}
+    {"field": "date", "operator": "==", "value": "11.01.2025"},
+    {"field": "temp", "operator": "==", "value": "4"},
+    {"field": "city", "operator": ">=", "value": "Iasi"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "GT", "value": "E"},
-    {"field": "temp", "operator": "GT", "value": "44"},
-    {"field": "wind", "operator": "GT", "value": "67"},
-    {"field": "station", "operator": "LTE", "value": "57"}
+    {"field": "wind", "operator": "==", "value": "66"},
+    {"field": "city", "operator": "==", "value": "Cluj"}
   ]
 },
 {
   "subscription": [
-    {"field": "temp", "operator": "LTE", "value": "14"}
+    {"field": "date", "operator": "==", "value": "02.08.2025"},
+    {"field": "temp", "operator": "<=", "value": "-18"},
+    {"field": "direction", "operator": "==", "value": "NW"},
+    {"field": "station", "operator": "==", "value": "9"},
+    {"field": "city", "operator": "==", "value": "Bucharest"}
   ]
 },
 {
   "subscription": [
-    {"field": "direction", "operator": "EQ", "value": "E"},
-    {"field": "city", "operator": "EQ", "value": "Constanta"},
-    {"field": "temp", "operator": "EQ", "value": "33"},
-    {"field": "wind", "operator": "EQ", "value": "25"},
-    {"field": "rain", "operator": "GTE", "value": "56.07"}
+    {"field": "rain", "operator": "<", "value": "8.76"},
+    {"field": "city", "operator": ">", "value": "Timisoara"}
   ]
 },
 {
   "subscription": [
-    {"field": "wind", "operator": "LTE", "value": "42"},
-    {"field": "rain", "operator": "GTE", "value": "89.37"},
-    {"field": "date", "operator": "LTE", "value": "04.01.2025"},
-    {"field": "station", "operator": "EQ", "value": "27"}
+    {"field": "direction", "operator": "==", "value": "NW"},
+    {"field": "rain", "operator": "==", "value": "70.59"},
+    {"field": "city", "operator": "==", "value": "Timisoara"}
   ]
 }
 ]

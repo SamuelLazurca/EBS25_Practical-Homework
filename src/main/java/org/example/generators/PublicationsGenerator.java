@@ -38,10 +38,16 @@ public class PublicationsGenerator {
         }
     }
 
-    public void generatePublications() {
+    public long generatePublications() {
+        long start = System.nanoTime();
+
         for (int i = 0; i < this.numberOfPublications; i++) {
             generatePublication();
         }
+
+        long end = System.nanoTime();
+
+        return (end - start) / 1_000_000;
     }
 
     private String generateValue(SchemaField field) {

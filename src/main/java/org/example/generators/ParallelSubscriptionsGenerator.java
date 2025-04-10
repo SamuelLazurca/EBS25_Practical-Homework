@@ -8,10 +8,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 
 public class ParallelSubscriptionsGenerator {
     public static void generateSubscriptionsMultiThreaded (
@@ -23,15 +20,14 @@ public class ParallelSubscriptionsGenerator {
             SubscriptionSaver subscriptionSaver
     ) throws Exception {
 
-        long startTime = System.nanoTime();
-
         boolean allFieldsHaveFrequencyRestrictions = schema.fields.size() == fieldsFrequencyPercentage.size();
 
         int totalFieldsCount = 0;
 
-        Map<SchemaField, Integer> globalTargetFieldFrequencies = new ConcurrentHashMap<>();
-        Map<SchemaField, Integer> globalEqualOperatorsFrequencies = new ConcurrentHashMap<>();
+        Map<SchemaField, Integer> globalTargetFieldFrequencies = new HashMap<>();
+        Map<SchemaField, Integer> globalEqualOperatorsFrequencies = new HashMap<>();
 
+        // Transform the frequency percentages into absolute frequencies
         for (SchemaField field : schema.fields) {
             Double pct = fieldsFrequencyPercentage.get(field);
             if (pct != null) {
@@ -53,9 +49,10 @@ public class ParallelSubscriptionsGenerator {
 
         List<Map<SchemaField, Integer>> threadTargetFieldsFrequencies = new ArrayList<>();
         for (int i = 0; i < numberOfThreads; i++) {
-            threadTargetFieldsFrequencies.add(new ConcurrentHashMap<>());
+            threadTargetFieldsFrequencies.add(new HashMap<>());
         }
 
+        // Distribute the frequencies across threads
         int[] numberOfSubsPerThread = new int[numberOfThreads];
 
         int chunkSize = totalSubscriptions / numberOfThreads;
@@ -81,6 +78,10 @@ public class ParallelSubscriptionsGenerator {
         int[] countOfFieldsPerThread = new int[numberOfThreads];
 
         if (allFieldsHaveFrequencyRestrictions) {
+            // Check for threads that might generate empty subscriptions
+            // because the number of subscriptions to generate
+            // is higher than the total number of fields
+
             List<Integer> threadsThatNeedMoreFields = new ArrayList<>();
             List<Integer> threadsThatCanDonate = new ArrayList<>();
 
@@ -98,6 +99,7 @@ public class ParallelSubscriptionsGenerator {
                 }
             }
 
+            // Redistribute fields from threads that can donate to threads that need more fields
             for (int i : threadsThatNeedMoreFields) {
                 int needed = numberOfSubsPerThread[i] - countOfFieldsPerThread[i];
                 if (needed <= 0) continue;
@@ -133,14 +135,15 @@ public class ParallelSubscriptionsGenerator {
                 }
 
                 if (needed > 0) {
-                    throw new IllegalStateException("Nu s-a putut redistribui suficient pentru thread-ul  " + i);
+                    throw new IllegalStateException("Couldn't redistribute fields to thread  " + i);
                 }
             }
         }
 
+        // Distribute the equal operators frequencies across threads
         List<Map<SchemaField, Integer>> threadEqualOperatorsFrequencies = new ArrayList<>();
         for (int i = 0; i < numberOfThreads; i++) {
-            threadEqualOperatorsFrequencies.add(new ConcurrentHashMap<>());
+            threadEqualOperatorsFrequencies.add(new HashMap<>());
         }
 
         for (Map.Entry<SchemaField, Integer> entry : globalEqualOperatorsFrequencies.entrySet()) {
@@ -154,6 +157,8 @@ public class ParallelSubscriptionsGenerator {
                     int threadFieldCount = threadTargetFieldsFrequencies.get(i).getOrDefault(field, 0);
                     int threadFieldOperatorCount = threadEqualOperatorsFrequencies.get(i).getOrDefault(field, 0);
 
+                    // Cannot have more operators than fields
+                    // Redistribute the operators evenly across threads
                     if (threadFieldCount - threadFieldOperatorCount > 0) {
                         int chunkReserved = Math.min(operatorMediumChunkSize, threadFieldCount - threadFieldOperatorCount);
                         chunkReserved = Math.min(chunkReserved, operatorCount);
@@ -165,11 +170,8 @@ public class ParallelSubscriptionsGenerator {
             }
         }
 
-        int endTime = (int) ((System.nanoTime() - startTime) / 1_000_000);
-
-        System.out.println("Durata pre-procesarii " + endTime + " ms");
-
         ExecutorService executor = Executors.newFixedThreadPool(numberOfThreads);
+        List<Future<Statistics>> futures = new ArrayList<>();
 
         for (int i = 0; i < numberOfThreads; i++) {
             int numberOfSubsToGenerate = numberOfSubsPerThread[i];
@@ -183,10 +185,11 @@ public class ParallelSubscriptionsGenerator {
                     allFieldsHaveFrequencyRestrictions,
                     countOfFieldsPerThread[i]
             );
-            // inject the saver instance
+
             localGen.setSubscriptionSaver(subscriptionSaver);
 
-            executor.execute(localGen::generateSubscriptions);
+            Future<Statistics> future = executor.submit(localGen::generateSubscriptions);
+            futures.add(future);
         }
 
         executor.shutdown();
@@ -198,6 +201,67 @@ public class ParallelSubscriptionsGenerator {
             executor.shutdownNow();
             Thread.currentThread().interrupt();
             throw new RuntimeException("Thread interrupted", e);
+        }
+
+        List<Statistics> allStats = new ArrayList<>();
+        for (Future<Statistics> future : futures) {
+            try {
+                allStats.add(future.get());
+            } catch (Exception e) {
+                System.err.println("Error in thread: " + e.getMessage());
+            }
+        }
+
+        System.out.println("\n=== Per-Thread Statistics ===");
+        System.out.printf("%-8s | %-10s | %-10s%n", "Thread", "Subs", "Time (ms)");
+        System.out.println("----------------------------------");
+
+        for (int i = 0; i < allStats.size(); i++) {
+            Statistics stats = allStats.get(i);
+            long records = stats.totalRecords();
+            long timeMs = stats.totalTimeInMillis();
+
+            System.out.printf("%-8d | %-10d | %10d%n", i, records, timeMs);
+        }
+
+        // Combine statistics from all threads
+        Map<SchemaField, Integer> combinedFieldsFrequencies = new HashMap<>();
+        Map<SchemaField, Integer> combinedEqualOperatorsFrequencies = new HashMap<>();
+
+        for (Statistics stats : allStats) {
+            for (Map.Entry<SchemaField, Integer> entry : stats.fieldsFrequencies().entrySet()) {
+                combinedFieldsFrequencies.merge(entry.getKey(), entry.getValue(), Integer::sum);
+            }
+            for (Map.Entry<SchemaField, Integer> entry : stats.equalOperatorFrequencies().entrySet()) {
+                combinedEqualOperatorsFrequencies.merge(entry.getKey(), entry.getValue(), Integer::sum);
+            }
+        }
+
+        System.out.println("\n=== Fields Frequencies Report ===");
+        System.out.printf("%-15s | %-20s | %-10s | %-10s%n", "Field", "Expected (Percent)", "Actual", "Diff");
+        System.out.println("----------------------------------------------------------------");
+
+        for (SchemaField field : globalTargetFieldFrequencies.keySet()) {
+            int expected = globalTargetFieldFrequencies.getOrDefault(field, 0);
+            double percent = fieldsFrequencyPercentage.get(field);
+            int actual = combinedFieldsFrequencies.getOrDefault(field, 0);
+            int diff = actual - expected;
+            System.out.printf("%-15s | %-20s | %-10d | %+10d%n",
+                    field.field(),
+                    String.format("%d (%.2f%%)", expected, percent),
+                    actual,
+                    diff);
+        }
+
+        System.out.println("\n=== Equal Operators Frequencies Report ===");
+        System.out.printf("%-15s | %-10s | %-10s | %-10s%n", "Field", "Expected", "Actual", "Diff");
+        System.out.println("------------------------------------------------------");
+
+        for (SchemaField field : globalEqualOperatorsFrequencies.keySet()) {
+            int expected = globalEqualOperatorsFrequencies.getOrDefault(field, 0);
+            int actual = combinedEqualOperatorsFrequencies.getOrDefault(field, 0);
+            int diff = actual - expected;
+            System.out.printf("%-15s | %-10d | %-10d | %+10d%n", field.field(), expected, actual, diff);
         }
     }
 }

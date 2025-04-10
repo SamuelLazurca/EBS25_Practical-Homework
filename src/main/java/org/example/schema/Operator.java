@@ -2,8 +2,8 @@ package org.example.schema;
 
 public enum Operator {
     GT,
-    LT,
     GTE,
+    LT,
     LTE,
     EQ,
     NEQ
