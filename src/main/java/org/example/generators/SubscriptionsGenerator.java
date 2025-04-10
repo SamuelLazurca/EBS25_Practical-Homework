@@ -5,7 +5,9 @@ import org.example.schema.Operator;
 import org.example.schema.Schema;
 import org.example.schema.SchemaField;
 import org.example.schema.SubscriptionValue;
+import org.example.storage.SubscriptionSaver;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -21,6 +23,7 @@ public class SubscriptionsGenerator {
     private int fieldsCurrentCount = 0;
     private final boolean allFieldsHaveFrequencyRestrictions;
     private int generatedSubscriptionsCount;
+    private SubscriptionSaver subscriptionSaver;
 
     public SubscriptionsGenerator(
             Schema schema,
@@ -99,6 +102,10 @@ public class SubscriptionsGenerator {
         }
     }
 
+    public void setSubscriptionSaver(SubscriptionSaver saver) {
+        this.subscriptionSaver = saver;
+    }
+
     public void generateSubscriptions() {
         long start = System.nanoTime();
         for (int i = 0; i < numberOfSubscriptions; i++)
@@ -148,7 +155,15 @@ public class SubscriptionsGenerator {
         }
         generatedSubscriptionsCount++;
 
-        System.out.println(subscription);
+        if (subscriptionSaver != null) {
+            try {
+                subscriptionSaver.save(subscription);
+            } catch (IOException e) {
+                System.err.println("Error saving subscription: " + e.getMessage());
+            }
+        } else {
+            System.out.println(subscription);
+        }
     }
 
     private void updateSubscription(Subscription subscription, SchemaField field) {

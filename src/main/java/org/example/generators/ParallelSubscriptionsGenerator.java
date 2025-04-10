@@ -2,6 +2,7 @@ package org.example.generators;
 
 import org.example.schema.Schema;
 import org.example.schema.SchemaField;
+import org.example.storage.SubscriptionSaver;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -18,7 +19,8 @@ public class ParallelSubscriptionsGenerator {
             int totalSubscriptions,
             int numberOfThreads,
             Map<SchemaField, Double> fieldsFrequencyPercentage,
-            Map<SchemaField, Double> equalOperatorsFrequencyPercentage
+            Map<SchemaField, Double> equalOperatorsFrequencyPercentage,
+            SubscriptionSaver subscriptionSaver
     ) throws Exception {
 
         long startTime = System.nanoTime();
@@ -180,6 +182,8 @@ public class ParallelSubscriptionsGenerator {
                     allFieldsHaveFrequencyRestrictions,
                     countOfFieldsPerThread[i]
             );
+            // inject the saver instance
+            localGen.setSubscriptionSaver(subscriptionSaver);
 
             executor.execute(localGen::generateSubscriptions);
         }
