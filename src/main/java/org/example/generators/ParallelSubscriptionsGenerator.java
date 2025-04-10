@@ -179,6 +179,7 @@ public class ParallelSubscriptionsGenerator {
                     numberOfSubsToGenerate,
                     threadTargetFieldsFrequencies.get(i),
                     threadEqualOperatorsFrequencies.get(i),
+                    equalOperatorsFrequencyPercentage,
                     allFieldsHaveFrequencyRestrictions,
                     countOfFieldsPerThread[i]
             );
