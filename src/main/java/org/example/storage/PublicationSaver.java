@@ -1,6 +1,7 @@
 package org.example.storage;
 
 import org.example.Publication;
+
 import java.io.IOException;
 
 public interface PublicationSaver {
