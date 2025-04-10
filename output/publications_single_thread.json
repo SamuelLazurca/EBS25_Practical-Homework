@@ -1,354 +1,24 @@
 [
 {
   "publication": [
-    {"field": "direction", "value": "NW"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "31"},
-    {"field": "wind", "value": "8"},
-    {"field": "rain", "value": "44.03"},
-    {"field": "date", "value": "05.06.2025"},
-    {"field": "station", "value": "70"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SE"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "10"},
-    {"field": "wind", "value": "40"},
-    {"field": "rain", "value": "72.52"},
-    {"field": "date", "value": "10.06.2025"},
-    {"field": "station", "value": "51"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NE"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "36"},
-    {"field": "wind", "value": "89"},
-    {"field": "rain", "value": "87.84"},
-    {"field": "date", "value": "09.03.2025"},
-    {"field": "station", "value": "35"}
-  ]
-},
-{
-  "publication": [
     {"field": "direction", "value": "W"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "40"},
-    {"field": "wind", "value": "5"},
-    {"field": "rain", "value": "57.43"},
-    {"field": "date", "value": "31.12.2025"},
-    {"field": "station", "value": "6"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
     {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "-26"},
-    {"field": "wind", "value": "43"},
-    {"field": "rain", "value": "84.16"},
-    {"field": "date", "value": "03.06.2025"},
-    {"field": "station", "value": "100"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NW"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "17"},
-    {"field": "wind", "value": "22"},
-    {"field": "rain", "value": "68.7"},
-    {"field": "date", "value": "19.08.2025"},
-    {"field": "station", "value": "47"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "S"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "18"},
-    {"field": "wind", "value": "61"},
-    {"field": "rain", "value": "17.0"},
-    {"field": "date", "value": "29.04.2025"},
-    {"field": "station", "value": "56"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SW"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "31"},
-    {"field": "wind", "value": "68"},
-    {"field": "rain", "value": "0.47"},
-    {"field": "date", "value": "01.08.2025"},
-    {"field": "station", "value": "22"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "S"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "38"},
-    {"field": "wind", "value": "89"},
-    {"field": "rain", "value": "7.7"},
-    {"field": "date", "value": "04.01.2025"},
-    {"field": "station", "value": "51"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "W"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "50"},
-    {"field": "wind", "value": "23"},
-    {"field": "rain", "value": "2.2"},
-    {"field": "date", "value": "08.07.2025"},
-    {"field": "station", "value": "86"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "-10"},
-    {"field": "wind", "value": "53"},
-    {"field": "rain", "value": "47.83"},
-    {"field": "date", "value": "10.10.2025"},
-    {"field": "station", "value": "53"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NW"},
-    {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "48"},
-    {"field": "wind", "value": "62"},
-    {"field": "rain", "value": "59.32"},
-    {"field": "date", "value": "02.09.2025"},
-    {"field": "station", "value": "64"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "S"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "31"},
-    {"field": "wind", "value": "71"},
-    {"field": "rain", "value": "65.45"},
-    {"field": "date", "value": "16.04.2025"},
-    {"field": "station", "value": "94"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "-5"},
-    {"field": "wind", "value": "8"},
-    {"field": "rain", "value": "84.5"},
-    {"field": "date", "value": "30.03.2025"},
-    {"field": "station", "value": "45"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Cluj"},
-    {"field": "temp", "value": "26"},
-    {"field": "wind", "value": "44"},
-    {"field": "rain", "value": "21.1"},
-    {"field": "date", "value": "07.11.2025"},
-    {"field": "station", "value": "50"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "-1"},
-    {"field": "wind", "value": "33"},
-    {"field": "rain", "value": "34.16"},
-    {"field": "date", "value": "21.01.2025"},
-    {"field": "station", "value": "71"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "S"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "4"},
-    {"field": "wind", "value": "36"},
-    {"field": "rain", "value": "45.36"},
-    {"field": "date", "value": "27.01.2025"},
-    {"field": "station", "value": "20"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SE"},
-    {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "-20"},
-    {"field": "wind", "value": "16"},
-    {"field": "rain", "value": "43.3"},
-    {"field": "date", "value": "13.06.2025"},
-    {"field": "station", "value": "39"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SW"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "-28"},
-    {"field": "wind", "value": "75"},
-    {"field": "rain", "value": "13.98"},
-    {"field": "date", "value": "11.10.2025"},
-    {"field": "station", "value": "93"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "S"},
-    {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "35"},
-    {"field": "wind", "value": "25"},
-    {"field": "rain", "value": "4.52"},
-    {"field": "date", "value": "06.02.2025"},
-    {"field": "station", "value": "17"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "N"},
-    {"field": "city", "value": "Cluj"},
-    {"field": "temp", "value": "-8"},
-    {"field": "wind", "value": "67"},
-    {"field": "rain", "value": "95.43"},
-    {"field": "date", "value": "07.02.2025"},
-    {"field": "station", "value": "68"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "27"},
-    {"field": "wind", "value": "53"},
-    {"field": "rain", "value": "85.33"},
-    {"field": "date", "value": "13.11.2025"},
-    {"field": "station", "value": "100"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "W"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "35"},
-    {"field": "wind", "value": "68"},
-    {"field": "rain", "value": "81.94"},
-    {"field": "date", "value": "19.09.2025"},
-    {"field": "station", "value": "47"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "N"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "-9"},
-    {"field": "wind", "value": "41"},
-    {"field": "rain", "value": "23.55"},
-    {"field": "date", "value": "21.04.2025"},
-    {"field": "station", "value": "80"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SE"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "2"},
-    {"field": "wind", "value": "52"},
-    {"field": "rain", "value": "37.26"},
-    {"field": "date", "value": "01.01.2025"},
+    {"field": "temp", "value": "-18"},
+    {"field": "wind", "value": "45"},
+    {"field": "rain", "value": "59.42"},
+    {"field": "date", "value": "31.08.2025"},
     {"field": "station", "value": "77"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "NW"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "39"},
-    {"field": "wind", "value": "41"},
-    {"field": "rain", "value": "92.35"},
-    {"field": "date", "value": "03.11.2025"},
-    {"field": "station", "value": "6"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SE"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "46"},
-    {"field": "wind", "value": "81"},
-    {"field": "rain", "value": "16.25"},
-    {"field": "date", "value": "21.08.2025"},
-    {"field": "station", "value": "58"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "SE"},
     {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "-11"},
-    {"field": "wind", "value": "81"},
-    {"field": "rain", "value": "23.31"},
-    {"field": "date", "value": "15.05.2025"},
-    {"field": "station", "value": "85"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NE"},
-    {"field": "city", "value": "Cluj"},
-    {"field": "temp", "value": "27"},
-    {"field": "wind", "value": "21"},
-    {"field": "rain", "value": "63.95"},
-    {"field": "date", "value": "03.08.2025"},
-    {"field": "station", "value": "1"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NE"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "-5"},
-    {"field": "wind", "value": "32"},
-    {"field": "rain", "value": "92.69"},
-    {"field": "date", "value": "27.05.2025"},
-    {"field": "station", "value": "68"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "S"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "-19"},
-    {"field": "wind", "value": "5"},
-    {"field": "rain", "value": "10.58"},
-    {"field": "date", "value": "27.08.2025"},
-    {"field": "station", "value": "30"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NE"},
-    {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "-14"},
-    {"field": "wind", "value": "94"},
-    {"field": "rain", "value": "49.43"},
-    {"field": "date", "value": "24.03.2025"},
-    {"field": "station", "value": "86"}
+    {"field": "temp", "value": "26"},
+    {"field": "wind", "value": "23"},
+    {"field": "rain", "value": "5.33"},
+    {"field": "date", "value": "15.12.2025"},
+    {"field": "station", "value": "25"}
   ]
 },
 {
@@ -356,32 +26,648 @@
     {"field": "direction", "value": "SE"},
     {"field": "city", "value": "Bucharest"},
     {"field": "temp", "value": "32"},
-    {"field": "wind", "value": "59"},
-    {"field": "rain", "value": "96.38"},
-    {"field": "date", "value": "07.08.2025"},
+    {"field": "wind", "value": "45"},
+    {"field": "rain", "value": "98.57"},
+    {"field": "date", "value": "29.11.2025"},
     {"field": "station", "value": "56"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "38"},
+    {"field": "wind", "value": "13"},
+    {"field": "rain", "value": "59.17"},
+    {"field": "date", "value": "28.04.2025"},
+    {"field": "station", "value": "64"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "16"},
+    {"field": "wind", "value": "47"},
+    {"field": "rain", "value": "48.76"},
+    {"field": "date", "value": "09.01.2025"},
+    {"field": "station", "value": "64"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
     {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "-12"},
-    {"field": "wind", "value": "93"},
-    {"field": "rain", "value": "14.5"},
-    {"field": "date", "value": "29.03.2025"},
-    {"field": "station", "value": "5"}
+    {"field": "temp", "value": "-1"},
+    {"field": "wind", "value": "98"},
+    {"field": "rain", "value": "78.02"},
+    {"field": "date", "value": "22.12.2025"},
+    {"field": "station", "value": "8"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "20"},
+    {"field": "wind", "value": "72"},
+    {"field": "rain", "value": "83.82"},
+    {"field": "date", "value": "24.12.2025"},
+    {"field": "station", "value": "94"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "25"},
+    {"field": "wind", "value": "85"},
+    {"field": "rain", "value": "0.84"},
+    {"field": "date", "value": "03.12.2025"},
+    {"field": "station", "value": "99"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "-7"},
+    {"field": "wind", "value": "71"},
+    {"field": "rain", "value": "20.14"},
+    {"field": "date", "value": "27.08.2025"},
+    {"field": "station", "value": "70"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "46"},
+    {"field": "wind", "value": "82"},
+    {"field": "rain", "value": "27.73"},
+    {"field": "date", "value": "18.03.2025"},
+    {"field": "station", "value": "86"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "24"},
+    {"field": "wind", "value": "26"},
+    {"field": "rain", "value": "15.61"},
+    {"field": "date", "value": "07.02.2025"},
+    {"field": "station", "value": "25"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "42"},
+    {"field": "wind", "value": "42"},
+    {"field": "rain", "value": "33.03"},
+    {"field": "date", "value": "21.09.2025"},
+    {"field": "station", "value": "20"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "50"},
+    {"field": "wind", "value": "45"},
+    {"field": "rain", "value": "32.1"},
+    {"field": "date", "value": "14.12.2025"},
+    {"field": "station", "value": "81"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-2"},
+    {"field": "wind", "value": "69"},
+    {"field": "rain", "value": "86.41"},
+    {"field": "date", "value": "27.06.2025"},
+    {"field": "station", "value": "55"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "E"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "26"},
+    {"field": "wind", "value": "42"},
+    {"field": "rain", "value": "21.25"},
+    {"field": "date", "value": "02.11.2025"},
+    {"field": "station", "value": "89"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "6"},
+    {"field": "wind", "value": "65"},
+    {"field": "rain", "value": "59.31"},
+    {"field": "date", "value": "10.12.2025"},
+    {"field": "station", "value": "69"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "SE"},
     {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "28"},
+    {"field": "wind", "value": "57"},
+    {"field": "rain", "value": "22.78"},
+    {"field": "date", "value": "14.11.2025"},
+    {"field": "station", "value": "44"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "22"},
+    {"field": "wind", "value": "82"},
+    {"field": "rain", "value": "27.74"},
+    {"field": "date", "value": "11.09.2025"},
+    {"field": "station", "value": "13"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "-17"},
+    {"field": "wind", "value": "57"},
+    {"field": "rain", "value": "25.01"},
+    {"field": "date", "value": "06.02.2025"},
+    {"field": "station", "value": "42"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-24"},
+    {"field": "wind", "value": "63"},
+    {"field": "rain", "value": "95.68"},
+    {"field": "date", "value": "26.02.2025"},
+    {"field": "station", "value": "75"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "-1"},
+    {"field": "wind", "value": "5"},
+    {"field": "rain", "value": "20.48"},
+    {"field": "date", "value": "25.12.2025"},
+    {"field": "station", "value": "48"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "23"},
+    {"field": "wind", "value": "85"},
+    {"field": "rain", "value": "53.33"},
+    {"field": "date", "value": "15.04.2025"},
+    {"field": "station", "value": "79"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "27"},
+    {"field": "wind", "value": "86"},
+    {"field": "rain", "value": "7.46"},
+    {"field": "date", "value": "30.07.2025"},
+    {"field": "station", "value": "62"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "-7"},
+    {"field": "wind", "value": "5"},
+    {"field": "rain", "value": "36.36"},
+    {"field": "date", "value": "13.08.2025"},
+    {"field": "station", "value": "47"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "38"},
+    {"field": "wind", "value": "77"},
+    {"field": "rain", "value": "3.78"},
+    {"field": "date", "value": "31.08.2025"},
+    {"field": "station", "value": "15"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-19"},
+    {"field": "wind", "value": "98"},
+    {"field": "rain", "value": "61.6"},
+    {"field": "date", "value": "08.12.2025"},
+    {"field": "station", "value": "50"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "-8"},
+    {"field": "wind", "value": "98"},
+    {"field": "rain", "value": "87.0"},
+    {"field": "date", "value": "01.07.2025"},
+    {"field": "station", "value": "2"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "16"},
+    {"field": "wind", "value": "36"},
+    {"field": "rain", "value": "11.98"},
+    {"field": "date", "value": "05.08.2025"},
+    {"field": "station", "value": "47"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "10"},
+    {"field": "wind", "value": "83"},
+    {"field": "rain", "value": "88.97"},
+    {"field": "date", "value": "27.01.2025"},
+    {"field": "station", "value": "98"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "38"},
+    {"field": "wind", "value": "97"},
+    {"field": "rain", "value": "22.19"},
+    {"field": "date", "value": "19.05.2025"},
+    {"field": "station", "value": "97"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "11"},
+    {"field": "wind", "value": "100"},
+    {"field": "rain", "value": "9.89"},
+    {"field": "date", "value": "21.11.2025"},
+    {"field": "station", "value": "48"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "16"},
+    {"field": "wind", "value": "67"},
+    {"field": "rain", "value": "53.93"},
+    {"field": "date", "value": "09.07.2025"},
+    {"field": "station", "value": "19"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "34"},
+    {"field": "wind", "value": "46"},
+    {"field": "rain", "value": "82.91"},
+    {"field": "date", "value": "03.07.2025"},
+    {"field": "station", "value": "60"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "E"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "17"},
+    {"field": "wind", "value": "19"},
+    {"field": "rain", "value": "35.06"},
+    {"field": "date", "value": "26.08.2025"},
+    {"field": "station", "value": "86"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "22"},
+    {"field": "wind", "value": "52"},
+    {"field": "rain", "value": "94.13"},
+    {"field": "date", "value": "02.05.2025"},
+    {"field": "station", "value": "78"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "32"},
+    {"field": "wind", "value": "26"},
+    {"field": "rain", "value": "96.29"},
+    {"field": "date", "value": "04.05.2025"},
+    {"field": "station", "value": "82"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "44"},
+    {"field": "wind", "value": "54"},
+    {"field": "rain", "value": "21.66"},
+    {"field": "date", "value": "06.11.2025"},
+    {"field": "station", "value": "36"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "30"},
+    {"field": "wind", "value": "37"},
+    {"field": "rain", "value": "56.88"},
+    {"field": "date", "value": "22.07.2025"},
+    {"field": "station", "value": "69"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "14"},
+    {"field": "wind", "value": "0"},
+    {"field": "rain", "value": "2.86"},
+    {"field": "date", "value": "16.02.2025"},
+    {"field": "station", "value": "20"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "-14"},
+    {"field": "wind", "value": "88"},
+    {"field": "rain", "value": "60.65"},
+    {"field": "date", "value": "01.09.2025"},
+    {"field": "station", "value": "65"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "-19"},
+    {"field": "wind", "value": "70"},
+    {"field": "rain", "value": "18.96"},
+    {"field": "date", "value": "07.09.2025"},
+    {"field": "station", "value": "25"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-9"},
+    {"field": "wind", "value": "73"},
+    {"field": "rain", "value": "27.22"},
+    {"field": "date", "value": "06.11.2025"},
+    {"field": "station", "value": "44"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "6"},
+    {"field": "wind", "value": "19"},
+    {"field": "rain", "value": "25.49"},
+    {"field": "date", "value": "23.07.2025"},
+    {"field": "station", "value": "14"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "31"},
+    {"field": "wind", "value": "71"},
+    {"field": "rain", "value": "80.26"},
+    {"field": "date", "value": "12.06.2025"},
+    {"field": "station", "value": "24"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "22"},
+    {"field": "wind", "value": "90"},
+    {"field": "rain", "value": "74.78"},
+    {"field": "date", "value": "19.08.2025"},
+    {"field": "station", "value": "6"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-17"},
+    {"field": "wind", "value": "7"},
+    {"field": "rain", "value": "24.03"},
+    {"field": "date", "value": "15.09.2025"},
+    {"field": "station", "value": "52"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "-30"},
+    {"field": "wind", "value": "97"},
+    {"field": "rain", "value": "19.04"},
+    {"field": "date", "value": "15.10.2025"},
+    {"field": "station", "value": "69"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Constanta"},
     {"field": "temp", "value": "4"},
+    {"field": "wind", "value": "36"},
+    {"field": "rain", "value": "27.92"},
+    {"field": "date", "value": "08.04.2025"},
+    {"field": "station", "value": "92"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "-23"},
+    {"field": "wind", "value": "55"},
+    {"field": "rain", "value": "41.85"},
+    {"field": "date", "value": "10.05.2025"},
+    {"field": "station", "value": "98"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "41"},
+    {"field": "wind", "value": "23"},
+    {"field": "rain", "value": "21.86"},
+    {"field": "date", "value": "15.01.2025"},
+    {"field": "station", "value": "77"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "E"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "-16"},
+    {"field": "wind", "value": "25"},
+    {"field": "rain", "value": "8.53"},
+    {"field": "date", "value": "22.08.2025"},
+    {"field": "station", "value": "16"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "41"},
+    {"field": "wind", "value": "20"},
+    {"field": "rain", "value": "16.76"},
+    {"field": "date", "value": "05.04.2025"},
+    {"field": "station", "value": "57"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "40"},
+    {"field": "wind", "value": "31"},
+    {"field": "rain", "value": "17.55"},
+    {"field": "date", "value": "25.08.2025"},
+    {"field": "station", "value": "25"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "48"},
+    {"field": "wind", "value": "45"},
+    {"field": "rain", "value": "16.94"},
+    {"field": "date", "value": "13.11.2025"},
+    {"field": "station", "value": "71"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "20"},
+    {"field": "wind", "value": "68"},
+    {"field": "rain", "value": "62.94"},
+    {"field": "date", "value": "21.04.2025"},
+    {"field": "station", "value": "59"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "-3"},
+    {"field": "wind", "value": "74"},
+    {"field": "rain", "value": "44.53"},
+    {"field": "date", "value": "21.03.2025"},
+    {"field": "station", "value": "65"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-10"},
+    {"field": "wind", "value": "86"},
+    {"field": "rain", "value": "20.22"},
+    {"field": "date", "value": "31.08.2025"},
+    {"field": "station", "value": "65"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "-11"},
+    {"field": "wind", "value": "23"},
+    {"field": "rain", "value": "20.75"},
+    {"field": "date", "value": "24.04.2025"},
+    {"field": "station", "value": "14"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "40"},
+    {"field": "wind", "value": "96"},
+    {"field": "rain", "value": "53.72"},
+    {"field": "date", "value": "30.08.2025"},
+    {"field": "station", "value": "86"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-17"},
     {"field": "wind", "value": "95"},
-    {"field": "rain", "value": "84.5"},
-    {"field": "date", "value": "16.09.2025"},
-    {"field": "station", "value": "93"}
+    {"field": "rain", "value": "51.04"},
+    {"field": "date", "value": "08.11.2025"},
+    {"field": "station", "value": "55"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "37"},
+    {"field": "wind", "value": "86"},
+    {"field": "rain", "value": "22.39"},
+    {"field": "date", "value": "30.05.2025"},
+    {"field": "station", "value": "11"}
   ]
 },
 {
@@ -389,164 +675,428 @@
     {"field": "direction", "value": "S"},
     {"field": "city", "value": "Constanta"},
     {"field": "temp", "value": "12"},
-    {"field": "wind", "value": "67"},
-    {"field": "rain", "value": "43.67"},
-    {"field": "date", "value": "04.05.2025"},
-    {"field": "station", "value": "31"}
+    {"field": "wind", "value": "25"},
+    {"field": "rain", "value": "8.28"},
+    {"field": "date", "value": "07.11.2025"},
+    {"field": "station", "value": "44"}
   ]
 },
 {
   "publication": [
-    {"field": "direction", "value": "SE"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "34"},
-    {"field": "wind", "value": "78"},
-    {"field": "rain", "value": "24.78"},
-    {"field": "date", "value": "18.01.2025"},
-    {"field": "station", "value": "43"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NE"},
+    {"field": "direction", "value": "E"},
     {"field": "city", "value": "Cluj"},
-    {"field": "temp", "value": "-8"},
-    {"field": "wind", "value": "33"},
-    {"field": "rain", "value": "88.23"},
-    {"field": "date", "value": "14.06.2025"},
-    {"field": "station", "value": "34"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "N"},
-    {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "-25"},
-    {"field": "wind", "value": "78"},
-    {"field": "rain", "value": "87.37"},
-    {"field": "date", "value": "08.02.2025"},
-    {"field": "station", "value": "90"}
+    {"field": "temp", "value": "37"},
+    {"field": "wind", "value": "21"},
+    {"field": "rain", "value": "64.19"},
+    {"field": "date", "value": "26.08.2025"},
+    {"field": "station", "value": "26"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "NW"},
     {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "41"},
-    {"field": "wind", "value": "29"},
-    {"field": "rain", "value": "39.83"},
-    {"field": "date", "value": "06.06.2025"},
-    {"field": "station", "value": "43"}
+    {"field": "temp", "value": "-22"},
+    {"field": "wind", "value": "86"},
+    {"field": "rain", "value": "53.17"},
+    {"field": "date", "value": "16.04.2025"},
+    {"field": "station", "value": "15"}
   ]
 },
 {
   "publication": [
-    {"field": "direction", "value": "E"},
+    {"field": "direction", "value": "NE"},
     {"field": "city", "value": "Constanta"},
-    {"field": "temp", "value": "-11"},
-    {"field": "wind", "value": "25"},
-    {"field": "rain", "value": "86.21"},
-    {"field": "date", "value": "12.12.2025"},
-    {"field": "station", "value": "29"}
+    {"field": "temp", "value": "-18"},
+    {"field": "wind", "value": "66"},
+    {"field": "rain", "value": "48.3"},
+    {"field": "date", "value": "05.03.2025"},
+    {"field": "station", "value": "66"}
   ]
 },
 {
   "publication": [
-    {"field": "direction", "value": "N"},
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "31"},
+    {"field": "wind", "value": "39"},
+    {"field": "rain", "value": "38.65"},
+    {"field": "date", "value": "04.05.2025"},
+    {"field": "station", "value": "36"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "20"},
+    {"field": "wind", "value": "35"},
+    {"field": "rain", "value": "52.15"},
+    {"field": "date", "value": "29.08.2025"},
+    {"field": "station", "value": "7"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "44"},
+    {"field": "wind", "value": "10"},
+    {"field": "rain", "value": "14.74"},
+    {"field": "date", "value": "05.07.2025"},
+    {"field": "station", "value": "21"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
     {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "30"},
-    {"field": "wind", "value": "79"},
-    {"field": "rain", "value": "23.55"},
-    {"field": "date", "value": "14.01.2025"},
-    {"field": "station", "value": "3"}
+    {"field": "temp", "value": "-19"},
+    {"field": "wind", "value": "64"},
+    {"field": "rain", "value": "0.82"},
+    {"field": "date", "value": "07.07.2025"},
+    {"field": "station", "value": "38"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "42"},
+    {"field": "wind", "value": "66"},
+    {"field": "rain", "value": "43.52"},
+    {"field": "date", "value": "08.09.2025"},
+    {"field": "station", "value": "51"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "-25"},
+    {"field": "wind", "value": "99"},
+    {"field": "rain", "value": "73.41"},
+    {"field": "date", "value": "19.08.2025"},
+    {"field": "station", "value": "26"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "-12"},
+    {"field": "wind", "value": "58"},
+    {"field": "rain", "value": "97.23"},
+    {"field": "date", "value": "20.03.2025"},
+    {"field": "station", "value": "21"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "SW"},
-    {"field": "city", "value": "Timisoara"},
-    {"field": "temp", "value": "39"},
-    {"field": "wind", "value": "77"},
-    {"field": "rain", "value": "3.98"},
-    {"field": "date", "value": "14.08.2025"},
-    {"field": "station", "value": "47"}
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "-27"},
+    {"field": "wind", "value": "93"},
+    {"field": "rain", "value": "61.21"},
+    {"field": "date", "value": "08.12.2025"},
+    {"field": "station", "value": "14"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "-17"},
+    {"field": "wind", "value": "52"},
+    {"field": "rain", "value": "4.54"},
+    {"field": "date", "value": "25.07.2025"},
+    {"field": "station", "value": "74"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "-3"},
+    {"field": "wind", "value": "16"},
+    {"field": "rain", "value": "51.53"},
+    {"field": "date", "value": "31.01.2025"},
+    {"field": "station", "value": "85"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "NE"},
     {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "46"},
+    {"field": "wind", "value": "72"},
+    {"field": "rain", "value": "23.73"},
+    {"field": "date", "value": "13.07.2025"},
+    {"field": "station", "value": "23"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "-9"},
+    {"field": "wind", "value": "19"},
+    {"field": "rain", "value": "6.64"},
+    {"field": "date", "value": "12.05.2025"},
+    {"field": "station", "value": "88"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "-18"},
+    {"field": "wind", "value": "27"},
+    {"field": "rain", "value": "12.32"},
+    {"field": "date", "value": "07.03.2025"},
+    {"field": "station", "value": "65"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "23"},
+    {"field": "wind", "value": "50"},
+    {"field": "rain", "value": "28.29"},
+    {"field": "date", "value": "28.10.2025"},
+    {"field": "station", "value": "45"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "17"},
+    {"field": "wind", "value": "92"},
+    {"field": "rain", "value": "71.17"},
+    {"field": "date", "value": "27.02.2025"},
+    {"field": "station", "value": "54"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "31"},
+    {"field": "wind", "value": "8"},
+    {"field": "rain", "value": "12.65"},
+    {"field": "date", "value": "16.10.2025"},
+    {"field": "station", "value": "61"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "47"},
+    {"field": "wind", "value": "41"},
+    {"field": "rain", "value": "18.75"},
+    {"field": "date", "value": "05.02.2025"},
+    {"field": "station", "value": "51"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "-12"},
+    {"field": "wind", "value": "3"},
+    {"field": "rain", "value": "50.6"},
+    {"field": "date", "value": "10.08.2025"},
+    {"field": "station", "value": "78"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Bucharest"},
     {"field": "temp", "value": "50"},
-    {"field": "wind", "value": "82"},
-    {"field": "rain", "value": "32.36"},
-    {"field": "date", "value": "10.03.2025"},
+    {"field": "wind", "value": "51"},
+    {"field": "rain", "value": "85.7"},
+    {"field": "date", "value": "16.01.2025"},
+    {"field": "station", "value": "52"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "W"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "47"},
+    {"field": "wind", "value": "70"},
+    {"field": "rain", "value": "52.81"},
+    {"field": "date", "value": "23.07.2025"},
+    {"field": "station", "value": "2"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "E"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "29"},
+    {"field": "wind", "value": "36"},
+    {"field": "rain", "value": "60.04"},
+    {"field": "date", "value": "03.05.2025"},
+    {"field": "station", "value": "70"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "E"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "9"},
+    {"field": "wind", "value": "23"},
+    {"field": "rain", "value": "42.72"},
+    {"field": "date", "value": "01.08.2025"},
+    {"field": "station", "value": "42"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "N"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "47"},
+    {"field": "wind", "value": "1"},
+    {"field": "rain", "value": "92.95"},
+    {"field": "date", "value": "02.04.2025"},
+    {"field": "station", "value": "60"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "14"},
+    {"field": "wind", "value": "42"},
+    {"field": "rain", "value": "73.88"},
+    {"field": "date", "value": "03.11.2025"},
+    {"field": "station", "value": "6"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "15"},
+    {"field": "wind", "value": "84"},
+    {"field": "rain", "value": "40.48"},
+    {"field": "date", "value": "08.02.2025"},
+    {"field": "station", "value": "11"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "1"},
+    {"field": "wind", "value": "62"},
+    {"field": "rain", "value": "77.39"},
+    {"field": "date", "value": "05.09.2025"},
+    {"field": "station", "value": "78"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "21"},
+    {"field": "wind", "value": "85"},
+    {"field": "rain", "value": "48.15"},
+    {"field": "date", "value": "13.07.2025"},
+    {"field": "station", "value": "58"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NE"},
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "36"},
+    {"field": "wind", "value": "10"},
+    {"field": "rain", "value": "13.57"},
+    {"field": "date", "value": "12.12.2025"},
     {"field": "station", "value": "36"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "6"},
-    {"field": "wind", "value": "68"},
-    {"field": "rain", "value": "25.36"},
-    {"field": "date", "value": "15.03.2025"},
-    {"field": "station", "value": "32"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NE"},
-    {"field": "city", "value": "Bucharest"},
-    {"field": "temp", "value": "-28"},
-    {"field": "wind", "value": "80"},
-    {"field": "rain", "value": "40.78"},
-    {"field": "date", "value": "28.03.2025"},
-    {"field": "station", "value": "9"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "E"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "-25"},
-    {"field": "wind", "value": "1"},
-    {"field": "rain", "value": "2.8"},
-    {"field": "date", "value": "17.06.2025"},
-    {"field": "station", "value": "23"}
-  ]
-},
-{
-  "publication": [
-    {"field": "direction", "value": "NW"},
-    {"field": "city", "value": "Cluj"},
-    {"field": "temp", "value": "-24"},
-    {"field": "wind", "value": "60"},
-    {"field": "rain", "value": "17.7"},
-    {"field": "date", "value": "30.07.2025"},
-    {"field": "station", "value": "95"}
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "26"},
+    {"field": "wind", "value": "77"},
+    {"field": "rain", "value": "26.3"},
+    {"field": "date", "value": "27.06.2025"},
+    {"field": "station", "value": "18"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "SW"},
-    {"field": "city", "value": "Iasi"},
-    {"field": "temp", "value": "25"},
-    {"field": "wind", "value": "58"},
-    {"field": "rain", "value": "53.73"},
-    {"field": "date", "value": "29.10.2025"},
-    {"field": "station", "value": "58"}
+    {"field": "city", "value": "Constanta"},
+    {"field": "temp", "value": "-16"},
+    {"field": "wind", "value": "11"},
+    {"field": "rain", "value": "96.64"},
+    {"field": "date", "value": "09.08.2025"},
+    {"field": "station", "value": "75"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Timisoara"},
+    {"field": "temp", "value": "-19"},
+    {"field": "wind", "value": "28"},
+    {"field": "rain", "value": "41.7"},
+    {"field": "date", "value": "16.03.2025"},
+    {"field": "station", "value": "13"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "S"},
+    {"field": "city", "value": "Cluj"},
+    {"field": "temp", "value": "-14"},
+    {"field": "wind", "value": "47"},
+    {"field": "rain", "value": "38.02"},
+    {"field": "date", "value": "19.02.2025"},
+    {"field": "station", "value": "88"}
   ]
 },
 {
   "publication": [
     {"field": "direction", "value": "SE"},
-    {"field": "city", "value": "Cluj"},
-    {"field": "temp", "value": "-3"},
-    {"field": "wind", "value": "32"},
-    {"field": "rain", "value": "88.65"},
-    {"field": "date", "value": "09.02.2025"},
-    {"field": "station", "value": "10"}
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "1"},
+    {"field": "wind", "value": "28"},
+    {"field": "rain", "value": "5.53"},
+    {"field": "date", "value": "22.09.2025"},
+    {"field": "station", "value": "12"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "NW"},
+    {"field": "city", "value": "Bucharest"},
+    {"field": "temp", "value": "1"},
+    {"field": "wind", "value": "27"},
+    {"field": "rain", "value": "41.33"},
+    {"field": "date", "value": "17.07.2025"},
+    {"field": "station", "value": "40"}
+  ]
+},
+{
+  "publication": [
+    {"field": "direction", "value": "SE"},
+    {"field": "city", "value": "Iasi"},
+    {"field": "temp", "value": "11"},
+    {"field": "wind", "value": "55"},
+    {"field": "rain", "value": "42.93"},
+    {"field": "date", "value": "15.04.2025"},
+    {"field": "station", "value": "25"}
   ]
 }
 ]

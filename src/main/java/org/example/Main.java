@@ -31,8 +31,8 @@ public class Main {
                 )
         );
 
-        int numberOfSubscriptions = 10;
-        int numberOfPublications = 50;
+        int numberOfSubscriptions = 1000;
+        int numberOfPublications = 100;
 
         // SINGLE-THREADED SUBSCRIPTIONS
         long start = System.nanoTime();
@@ -54,7 +54,7 @@ public class Main {
 
         // PARALLEL PUBLICATIONS
         start = System.nanoTime();
-        getPublicationsGeneratedInParallel(schema, numberOfSubscriptions);
+        getPublicationsGeneratedInParallel(schema, numberOfPublications);
         end = System.nanoTime();
         System.out.println("Durata generării paralele (publicatii): " + (end - start) / 1_000_000 + " ms");
     }
@@ -106,7 +106,7 @@ public class Main {
             equalOperatorFrequency.put(field, 50.0);
         }
 
-        int threads = 4;
+        int threads = 10;
 
         SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_multi_thread.json");
 
