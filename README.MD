@@ -24,10 +24,10 @@ Available Cores: 16
 
 ### Generare publicatii
 
-Pentru generarea de publicatii, algoritmul genereaza random fiecare field 
+Pentru generarea de publicatii, algoritmul genereaza random fiecare field
 fie dintr-un interval, fie dintr-o lista de valori predefinite.
 
-Pentru varianta multi-threaded, algoritmul genereaza publicatiile in paralel, impartind 
+Pentru varianta multi-threaded, algoritmul genereaza publicatiile in paralel, impartind
 numarul de publicatii in mod aproximativ egal pe numarul de thread-uri.
 
 ```
@@ -54,27 +54,32 @@ Thread   | Pubs       | Time (ms)
 
 ### Generare subscriptii
 
-Transform procentele pentru fiecare field in numare intregi. 
-Pe parcursul generarii numar de cate ori apare un field.
+La acest pas, se transforma procentele pentru fiecare field in numere intregi.
+Pe parcursul generarii se numara de cate ori apare un field.
 
-Un caz important de tratat este atunci cand numarul total minus numarul curent de subscriptii devine 
-egal cu numarul ramas de aparitii a unui field, atunci trebuie obligatoriu sa selectam acel field, 
-altfel pot alege random.
+Un caz important de tratat este atunci cand numarul total minus numarul curent de subscriptii devine
+egal cu numarul ramas de aparitii a unui field. Astfel ca trebuie inclus obligatoriu acel field in toate subscriptiile
+ramase de generat. Daca, insa, numarul de subscriptii ce mai trebuie generate pentru un camp este mai mic decat numarul total
+de subscriptii ramase de construit, atunci se alege acest camp cu probabilitate de ```50%```.
 
-Un alt caz special este atunci cand toate field-urile au restrictii de frecventa si 
-suma lor e mai mica decat numarul total de subscriptii, atunci nu putem genera, daca avem insa field-uri fara restrictii 
-putem alege dintre ele.
+Un alt caz special este atunci cand toate campurile au restrictii de frecventa, iar suma totala a acestor frecvente
+este mai mica decat numarul total de subscriptii. Generarea tuturor subscriptiilor ar conduce la unele goale, astfel ca o exceptie
+este aruncata. Daca este macar un field fara restrictie, generarea este posibila, deoarece fiecare subscriptie va avea cel putin
+un camp.
 
-La metoda multi-threaded, trebuie sa ma asigur ca numarul total de field-uri este cel putin egal cu numarul 
-de subscriptii de generat pentru a nu genera subscriptii goale asa ca trebuie facuta o echilibrare a numarului de subscriptii
-si a numarului de field-uri per thread. 
+La metoda multi-threaded, pentru a evita generarea de subscriptii goale (cum a fost descris mai sus), a fost implementata o
+echilibrare a numarului de subscriptii si a numarului de campuri per thread. Astfel se distribuie "load-ul" in mod egal,
+iar setul de subscriptii obinut respecta, totodata, restrictiile impuse de cerinta.
 
-Se procedeaza intr-o maniera asemanatoare si pentru frecventa operatorului "==".
+Se procedeaza intr-o maniera asemanatoare si pentru frecventa operatorului ```==```.
 
-Daca se seteaza o frecventa pentru operatorul egal dar nu pentru acel field, 
-nu putem cunoaste inainte de rulare exact cati operatori ar trebui generati, dar am incercat sa rezolvam aceasta situatie 
-prin calcularea numarului de aparitii ale operatorului egal in functie de numarul de aparitii a acelui field pana la
-iteratia curenta.
+Frecventa minima pentru operatorul **EQ** poate fi setata pentru orice camp al subscriptiilor, restrictionat sau nu.
+
+- ***Cu restrictie***: in acest caz, se poate calcula de la inceput numarul minim de operatori **EQ** pentru acel field;
+- ***Fara restrictie***: in acest caz nu se poate afla de la inceput minimul de operatori **EQ** pentru un camp care are numar variabil
+  de aparitii. Am rezolvat aceasta problema prin calcularea frecventei **EQ** minime la fiecare noua generare de subscriptie
+  ce include campul vizat. Astfel, daca frecventa minima nu este atinsa, se foloseste direct operatorul **EQ** pentru campul ales
+  din subscriptia generata. In cazul in care frecventa minima este atinsa, se genereaza un operator aleatoriu.
 
 ```
 === System & CPU Stats ===
