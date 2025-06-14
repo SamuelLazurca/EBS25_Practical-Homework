@@ -33,8 +33,8 @@ public class Main {
                 )
         );
 
-        int numberOfSubscriptions = 10;
-        int numberOfPublications = 10;
+        int numberOfSubscriptions = 1000;
+        int numberOfPublications = 100;
         int numberOfThreads = 4;
 
         OperatingSystemMXBean osBean =
@@ -93,7 +93,7 @@ public class Main {
     private static void getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 50.0);
+            fieldsFrequencyPercentage.put(field, 100.0);
         }
 
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
@@ -126,11 +126,12 @@ public class Main {
     private static void getSubscriptionsGeneratedInParallel(Schema schema, int numberOfSubscriptions, int threads) throws Exception {
         Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
         for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 50.0);
+            fieldsFrequencyPercentage.put(field, 100.0);
         }
 
         fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
         fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
+        fieldsFrequencyPercentage.put(SchemaFields.RAIN, 20.0);
 
         Map<SchemaField, Double> equalOperatorFrequency = new HashMap<>();
         for (SchemaField field : schema.fields) {

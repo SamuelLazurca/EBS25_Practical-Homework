@@ -15,23 +15,22 @@ public class Publication {
 
     public String toJson() {
         StringBuilder sb = new StringBuilder();
-        sb.append("{\n  \"publication\": [\n");
+        sb.append(" {");
         Iterator<Map.Entry<SchemaField, String>> it = fields.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SchemaField, String> entry = it.next();
             SchemaField field = entry.getKey();
             String value = entry.getValue();
-            sb.append("    {\"field\": \"")
+            sb.append(" \"")
                     .append(field.field().toString().toLowerCase())
-                    .append("\", \"value\": \"")
+                    .append("\": \"")
                     .append(value)
-                    .append("\"}");
+                    .append("\"");
             if (it.hasNext()) {
                 sb.append(",");
             }
-            sb.append("\n");
         }
-        sb.append("  ]\n}");
+        sb.append(" }");
         return sb.toString();
     }
 

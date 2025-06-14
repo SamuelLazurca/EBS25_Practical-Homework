@@ -10,7 +10,6 @@ import org.example.storage.SubscriptionSaver;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 public class SubscriptionsGenerator {
     private final Schema schema;

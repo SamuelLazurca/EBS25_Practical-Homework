@@ -17,25 +17,26 @@ public class Subscription {
 
     public String toJson() {
         StringBuilder sb = new StringBuilder();
-        sb.append("{\n  \"subscription\": [\n");
+        sb.append("{");
         Iterator<Map.Entry<SchemaField, SubscriptionValue>> it = fields.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SchemaField, SubscriptionValue> entry = it.next();
             SchemaField field = entry.getKey();
             SubscriptionValue subVal = entry.getValue();
-            sb.append("    {\"field\": \"")
+            sb.append("\"")
                     .append(field.field().toString().toLowerCase())
-                    .append("\", \"operator\": \"")
+                    .append("\": {")
+                    .append(" \"operator\": \"")
                     .append(GeneratorsParams.MapOperatorToString.get(subVal.operator().ordinal()))
                     .append("\", \"value\": \"")
                     .append(subVal.value())
-                    .append("\"}");
+                    .append("\"");
+            sb.append(" }");
             if (it.hasNext()) {
                 sb.append(",");
             }
-            sb.append("\n");
         }
-        sb.append("  ]\n}");
+        sb.append("}");
         return sb.toString();
     }
 

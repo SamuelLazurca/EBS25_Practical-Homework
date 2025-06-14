@@ -12,13 +12,13 @@ public class TextFileSubscriptionSaver implements SubscriptionSaver {
 
     public TextFileSubscriptionSaver(String fileName) throws IOException {
         writer = new BufferedWriter(new FileWriter(fileName));
-        writer.write("[\n");
+        //writer.write("[\n");
     }
 
     @Override
     public synchronized void save(Subscription subscription) throws IOException {
         if (!firstWrite) {
-            writer.write(",\n");
+            writer.write("\n");
         }
         writer.write(subscription.toJson());
         firstWrite = false;
@@ -26,7 +26,7 @@ public class TextFileSubscriptionSaver implements SubscriptionSaver {
 
     @Override
     public void close() throws IOException {
-        writer.write("\n]");
+        //writer.write("\n]");
         writer.close();
     }
 }
