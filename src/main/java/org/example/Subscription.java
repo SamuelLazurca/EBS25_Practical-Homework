@@ -23,7 +23,7 @@ public class Subscription {
             Map.Entry<SchemaField, SubscriptionValue> entry = it.next();
             SchemaField field = entry.getKey();
             SubscriptionValue subVal = entry.getValue();
-            sb.append("\"")
+            sb.append(" \"")
                     .append(field.field().toString().toLowerCase())
                     .append("\": {")
                     .append(" \"operator\": \"")
@@ -38,7 +38,7 @@ public class Subscription {
                 sb.append(",");
             }
         }
-        sb.append("}");
+        sb.append(" }");
         return sb.toString();
     }
 

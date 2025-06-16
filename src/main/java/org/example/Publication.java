@@ -15,7 +15,7 @@ public class Publication {
 
     public String toJson() {
         StringBuilder sb = new StringBuilder();
-        sb.append(" {");
+        sb.append("{");
         Iterator<Map.Entry<SchemaField, String>> it = fields.entrySet().iterator();
         while (it.hasNext()) {
             Map.Entry<SchemaField, String> entry = it.next();
