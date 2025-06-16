@@ -1,10 +1,7 @@
 package org.example.generators;
 
 import org.example.Subscription;
-import org.example.schema.Operator;
-import org.example.schema.Schema;
-import org.example.schema.SchemaField;
-import org.example.schema.SubscriptionValue;
+import org.example.schema.*;
 import org.example.storage.SubscriptionSaver;
 
 import java.io.IOException;
@@ -24,12 +21,13 @@ public class SubscriptionsGenerator {
     private final boolean allFieldsHaveFrequencyRestrictions;
     private int generatedSubscriptionsCount;
     private SubscriptionSaver subscriptionSaver;
+    private final double avgFieldProbability;
 
     public SubscriptionsGenerator(
             Schema schema,
             Map<SchemaField, Double> fieldsFrequencyPercentages,
             Map<SchemaField, Double> equalFrequencyPercentages,
-            int targetNumberOfSubscriptions
+            int targetNumberOfSubscriptions, double avgFieldProbability
     ) throws Exception {
         this.schema = schema;
         this.targetNumberOfSubscriptions = targetNumberOfSubscriptions;
@@ -73,6 +71,9 @@ public class SubscriptionsGenerator {
 
         this.fieldsTotalMaxCount = fieldsCount;
         this.allFieldsHaveFrequencyRestrictions = restricted;
+
+        // Probability to determine if a field is avg_field in a subscription (complex)
+        this.avgFieldProbability = avgFieldProbability;
     }
 
     public SubscriptionsGenerator(
@@ -82,7 +83,8 @@ public class SubscriptionsGenerator {
             Map<SchemaField, Integer> equalRequiredFrequencies,
             Map<SchemaField, Double> equalFrequencyPercentages,
             boolean allFieldsHaveFrequencyRestrictions,
-            int fieldsTotalMaxCount
+            int fieldsTotalMaxCount,
+            double avgFieldProbability
     ) throws Exception {
         this.schema = schema;
         this.targetNumberOfSubscriptions = targetNumberOfSubscriptions;
@@ -106,6 +108,9 @@ public class SubscriptionsGenerator {
         if (this.allFieldsHaveFrequencyRestrictions && this.fieldsTotalMaxCount < targetNumberOfSubscriptions) {
             throw new Exception("Total frequency < 100% in partition");
         }
+
+        // Probability to determine if a field is avg_field in a subscription (complex)
+        this.avgFieldProbability = avgFieldProbability;
     }
 
     public void setSubscriptionSaver(SubscriptionSaver saver) {
@@ -196,8 +201,11 @@ public class SubscriptionsGenerator {
             case Date -> GeneratorsParams.dateFormat.format(GeneratorsParams.dateLimit.getRandomValue());
         };
 
+        // Generate a random operator for the field
+        // and determine if it is an avg_field
         Operator operator = generateOperator(field);
-        subscription.addField(field, new SubscriptionValue(operator, value));
+        boolean isAvgField = isAverageField(field);
+        subscription.addField(field, new SubscriptionValue(operator, value, isAvgField));
 
         fieldsCurrentFrequencies.put(field, fieldsCurrentFrequencies.get(field) + 1);
         fieldsCurrentCount++;
@@ -221,7 +229,7 @@ public class SubscriptionsGenerator {
                     return Operator.EQ;
                 }
 
-                return Operator.values()[(int) (Math.random() * Operator.values().length)];
+                return randomOperator(field);
             }
 
             // we know that the field has a required frequency
@@ -239,6 +247,28 @@ public class SubscriptionsGenerator {
         // 1. There was no equal operator frequency
         // 2. The minimum equal operator frequency is already reached
         // 3. There are more remaining subscriptions than equal operator frequency
+        return randomOperator(field);
+    }
+
+    private Operator randomOperator(SchemaField field) {
+        // Generate a random operator from the Operator enum
+
+        // If the field is City or Direction, we only allow EQ and NEQ operators
+        if (field.field() == SchemaFieldNames.City || field.field() == SchemaFieldNames.Direction) {
+            return Math.random() < 0.5 ? Operator.EQ : Operator.NEQ;
+        }
+
+        // For other fields, we allow all operators
         return Operator.values()[(int) (Math.random() * Operator.values().length)];
+    }
+
+    private boolean isAverageField(SchemaField field) {
+        if (field.field() == SchemaFieldNames.Temp ||
+            field.field() == SchemaFieldNames.Rain ||
+            field.field() == SchemaFieldNames.Wind) {
+            return Math.random() < avgFieldProbability;
+        }
+        // For other fields, we assume they are not average fields
+        return false;
     }
 }

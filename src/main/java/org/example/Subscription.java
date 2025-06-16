@@ -30,6 +30,8 @@ public class Subscription {
                     .append(GeneratorsParams.MapOperatorToString.get(subVal.operator().ordinal()))
                     .append("\", \"value\": \"")
                     .append(subVal.value())
+                    .append("\", \"isAverage\": \"")
+                    .append(subVal.isAverage())
                     .append("\"");
             sb.append(" }");
             if (it.hasNext()) {
@@ -52,6 +54,8 @@ public class Subscription {
                     .append(GeneratorsParams.MapOperatorToString.get(fields.get(field).operator().ordinal()))
                     .append(",")
                     .append(fields.get(field).value())
+                    .append(",")
+                    .append(fields.get(field).isAverage())
                     .append("),\n");
         }
         sb.append("}\n");

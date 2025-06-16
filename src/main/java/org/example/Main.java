@@ -14,13 +14,28 @@ import org.example.storage.TextFilePublicationSaver;
 import org.example.storage.TextFileSubscriptionSaver;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.lang.management.ManagementFactory;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Properties;
 
 public class Main {
     public static void main(String[] args) throws Exception {
+        // Load configuration
+        String configPath = args.length > 0 ? args[0] : "/config.properties";
+        Properties props = new Properties();
+        try (InputStream fis = Main.class.getResourceAsStream(configPath)) {
+            if (fis == null) {
+                throw new IOException("Configuration file not found: " + configPath);
+            }
+            props.load(fis);
+        } catch (IOException e) {
+            System.err.println("Error loading configuration: " + e.getMessage());
+            return;
+        }
+
         Schema schema = new Schema(
                 List.of(
                         SchemaFields.STATION,
@@ -33,13 +48,15 @@ public class Main {
                 )
         );
 
-        int numberOfSubscriptions = 1000;
-        int numberOfPublications = 100;
-        int numberOfThreads = 4;
+        // Parse basic numeric settings
+        int numberOfSubscriptions  = Integer.parseInt(props.getProperty("numberOfSubscriptions", "10"));
+        int numberOfPublications   = Integer.parseInt(props.getProperty("numberOfPublications", "10"));
+        int numberOfThreads        = Integer.parseInt(props.getProperty("numberOfThreads", "4"));
+        double avgFieldProbability = Double.parseDouble(props.getProperty("probability.avgField", "0.0"));
 
+        // OS stats
         OperatingSystemMXBean osBean =
                 (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
-
         int availableProcessors = osBean.getAvailableProcessors();
 
         System.out.println("\n=== System & CPU Stats ===");
@@ -48,9 +65,25 @@ public class Main {
         System.out.println("Architecture:    " + System.getProperty("os.arch"));
         System.out.println("Available Cores: " + availableProcessors);
 
+        // Build frequency maps from config
+        Map<SchemaField, Double> fieldsFrequency = new HashMap<>();
+        Map<SchemaField, Double> equalOpFrequency = new HashMap<>();
+        double defaultFieldFreq = Double.parseDouble(props.getProperty("default.fieldsFrequency", "50.0"));
+        double defaultEqFreq    = Double.parseDouble(props.getProperty("default.equalOpFrequency", "50.0"));
+
+        for (SchemaField field : schema.fields) {
+            String keyF = "fieldsFrequency." + field.field().toString().toUpperCase();
+            String keyE = "equalOpFrequency." + field.field().toString().toUpperCase();
+            double fFreq = Double.parseDouble(props.getProperty(keyF, String.valueOf(defaultFieldFreq)));
+            double eFreq = Double.parseDouble(props.getProperty(keyE, String.valueOf(defaultEqFreq)));
+            fieldsFrequency.put(field, fFreq);
+            equalOpFrequency.put(field, eFreq);
+        }
+
         // SINGLE-THREADED SUBSCRIPTIONS
         long start = System.nanoTime();
-        getSubscriptions(schema, numberOfSubscriptions);
+        getSubscriptions(schema, props, fieldsFrequency, equalOpFrequency,
+                numberOfSubscriptions, avgFieldProbability);
         long end = System.nanoTime();
 
         System.out.println("\n\nSUBSCRIPTIONS GENERATION");
@@ -62,7 +95,8 @@ public class Main {
         System.out.println("\nMulti-threaded execution");
 
         start = System.nanoTime();
-        getSubscriptionsGeneratedInParallel(schema, numberOfSubscriptions, numberOfThreads);
+        getSubscriptionsGeneratedInParallel(schema, props, fieldsFrequency, equalOpFrequency,
+                numberOfSubscriptions, numberOfThreads, avgFieldProbability);
         end = System.nanoTime();
 
         System.out.println("\n** Number of threads: " + numberOfThreads);
@@ -73,7 +107,7 @@ public class Main {
         System.out.println("==========================");
 
         start = System.nanoTime();
-        getPublications(schema, numberOfPublications);
+        getPublications(schema, props, numberOfPublications);
         end = System.nanoTime();
 
         System.out.println("\nSingle-threaded execution\n");
@@ -83,105 +117,74 @@ public class Main {
         System.out.println("\nMulti-threaded execution");
 
         start = System.nanoTime();
-        getPublicationsGeneratedInParallel(schema, numberOfPublications, numberOfThreads);
+        getPublicationsGeneratedInParallel(schema, props, numberOfPublications, numberOfThreads);
         end = System.nanoTime();
 
         System.out.println("\n** Number of threads: " + numberOfThreads);
         System.out.println("** Duration " + (end - start) / 1_000_000 + " ms\n");
     }
 
-    private static void getSubscriptions(Schema schema, int numberOfSubscriptions) throws Exception {
-        Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
-        for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 100.0);
-        }
-
-        fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
-        fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
-
-        Map<SchemaField, Double> equalOperatorFrequency = new HashMap<>();
-        for (SchemaField field : schema.fields) {
-            equalOperatorFrequency.put(field, 50.0);
-        }
-
-        SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_single_thread.json");
-
-        SubscriptionsGenerator generator = new SubscriptionsGenerator(
-                schema,
-                fieldsFrequencyPercentage,
-                equalOperatorFrequency,
-                numberOfSubscriptions
+    private static void getSubscriptions(Schema schema, Properties props,
+                                         Map<SchemaField, Double> fieldsFrequency,
+                                         Map<SchemaField, Double> equalOpFrequency,
+                                         int numberOfSubscriptions, double avgFieldProbability) throws Exception {
+        SubscriptionSaver subSaverSingle = new TextFileSubscriptionSaver(
+                props.getProperty("output.subscriptions.single", "output/subscriptions_single_thread.json")
         );
-
-        generator.setSubscriptionSaver(saver);
-        generator.generateSubscriptions();
-
-        try {
-            saver.close();
-        } catch (IOException e) {
-            System.err.println("Error closing saver: " + e.getMessage());
-        }
+        SubscriptionsGenerator subGen = new SubscriptionsGenerator(
+                schema,
+                fieldsFrequency,
+                equalOpFrequency,
+                numberOfSubscriptions,
+                avgFieldProbability
+        );
+        subGen.setSubscriptionSaver(subSaverSingle);
+        subGen.generateSubscriptions();
+        subSaverSingle.close();
     }
 
-    private static void getSubscriptionsGeneratedInParallel(Schema schema, int numberOfSubscriptions, int threads) throws Exception {
-        Map<SchemaField, Double> fieldsFrequencyPercentage = new HashMap<>();
-        for (SchemaField field : schema.fields) {
-            fieldsFrequencyPercentage.put(field, 100.0);
-        }
-
-        fieldsFrequencyPercentage.put(SchemaFields.CITY, 70.0);
-        fieldsFrequencyPercentage.put(SchemaFields.WIND, 30.0);
-        fieldsFrequencyPercentage.put(SchemaFields.RAIN, 20.0);
-
-        Map<SchemaField, Double> equalOperatorFrequency = new HashMap<>();
-        for (SchemaField field : schema.fields) {
-            equalOperatorFrequency.put(field, 50.0);
-        }
-
-        SubscriptionSaver saver = new TextFileSubscriptionSaver("output/subscriptions_multi_thread.json");
-
+    private static void getSubscriptionsGeneratedInParallel(Schema schema, Properties props,
+                                                            Map<SchemaField, Double> fieldsFrequency,
+                                                            Map<SchemaField, Double> equalOpFrequency,
+                                                            int numberOfSubscriptions, int numberOfThreads,
+                                                            double avgFieldProbability) throws Exception {
+        SubscriptionSaver subSaverMulti = new TextFileSubscriptionSaver(
+                props.getProperty("output.subscriptions.multi", "output/subscriptions_multi_thread.json")
+        );
         ParallelSubscriptionsGenerator.generateSubscriptionsMultiThreaded(
                 schema,
                 numberOfSubscriptions,
-                threads,
-                fieldsFrequencyPercentage,
-                equalOperatorFrequency,
-                saver
+                numberOfThreads,
+                fieldsFrequency,
+                equalOpFrequency,
+                avgFieldProbability,
+                subSaverMulti
         );
-
-        try {
-            saver.close();
-        } catch (IOException e) {
-            System.err.println("Error closing saver: " + e.getMessage());
-        }
+        subSaverMulti.close();
     }
 
-    private static void getPublications(Schema schema, int numberOfPublications) throws IOException {
-        PublicationSaver saver = new TextFilePublicationSaver("output/publications_single_thread.json");
-        PublicationsGenerator generator = new PublicationsGenerator(schema, numberOfPublications);
-        generator.setPublicationSaver(saver);
-        generator.generatePublications();
-
-        try {
-            saver.close();
-        } catch (IOException e) {
-            System.err.println("Error closing saver: " + e.getMessage());
-        }
+    private static void getPublications(Schema schema, Properties props,
+                                        int numberOfPublications) throws IOException {
+        PublicationSaver pubSaverSingle = new TextFilePublicationSaver(
+                props.getProperty("output.publications.single", "output/publications_single_thread.json")
+        );
+        PublicationsGenerator pubGen = new PublicationsGenerator(schema, numberOfPublications);
+        pubGen.setPublicationSaver(pubSaverSingle);
+        pubGen.generatePublications();
+        pubSaverSingle.close();
     }
 
-    private static void getPublicationsGeneratedInParallel(Schema schema, int numberOfPublications, int threads) throws Exception {
-        PublicationSaver saver = new TextFilePublicationSaver("output/publications_multi_thread.json");
+    private static void getPublicationsGeneratedInParallel(Schema schema, Properties props,
+                                                           int numberOfPublications, int numberOfThreads) throws Exception {
+        PublicationSaver pubSaverMulti = new TextFilePublicationSaver(
+                props.getProperty("output.publications.multi", "output/publications_multi_thread.json")
+        );
         ParallelPublicationsGenerator.generatePublicationsMultithreaded(
                 schema,
-                threads,
+                numberOfThreads,
                 numberOfPublications,
-                saver
+                pubSaverMulti
         );
-
-        try {
-            saver.close();
-        } catch (IOException e) {
-            System.err.println("Error closing saver: " + e.getMessage());
-        }
+        pubSaverMulti.close();
     }
 }
