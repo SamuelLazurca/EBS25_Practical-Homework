@@ -17,6 +17,7 @@ public class ParallelSubscriptionsGenerator {
             int numberOfThreads,
             Map<SchemaField, Double> fieldsFrequencyPercentage,
             Map<SchemaField, Double> equalOperatorsFrequencyPercentage,
+            double avgFieldProbability,
             SubscriptionSaver subscriptionSaver
     ) throws Exception {
 
@@ -183,7 +184,8 @@ public class ParallelSubscriptionsGenerator {
                     threadEqualOperatorsFrequencies.get(i),
                     equalOperatorsFrequencyPercentage,
                     allFieldsHaveFrequencyRestrictions,
-                    countOfFieldsPerThread[i]
+                    countOfFieldsPerThread[i],
+                    avgFieldProbability
             );
 
             localGen.setSubscriptionSaver(subscriptionSaver);
